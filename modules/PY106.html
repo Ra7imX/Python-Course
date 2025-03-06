@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY106 - Saisie utilisateur avec input() et conversion de types | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY106 - Saisie utilisateur avec input() et conversion de types</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY106</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="PY105.html" class="prev">← Précédent: PY105</a>
+                <a href="PY107.html" class="next">Suivant: PY107 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Saisie utilisateur avec input() et conversion de types</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Maîtriser la fonction input()</li>
+                <li>Comprendre la conversion de types</li>
+                <li>Gérer les erreurs de saisie</li>
+                <li>Créer des interfaces utilisateur simples</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Base de input()</h3>
+            <p>La fonction <strong>input()</strong> permet de récupérer des données saisies par l'utilisateur :</p>
+
+            <div class="code-block">
+                # Saisie simple de texte<br>
+                nom = input("Entrez votre nom : ")<br>
+                ville = input("Dans quelle ville du Maroc habitez-vous ? ")<br>
+                print(f"Bonjour {nom} de {ville} !")
+            </div>
+
+            <p>Points importants à retenir :</p>
+            <ul>
+                <li>La fonction input() affiche le message entre parenthèses</li>
+                <li>Elle met le programme en pause jusqu'à ce que l'utilisateur appuie sur Entrée</li>
+                <li>La valeur retournée est <strong>toujours une chaîne de caractères</strong></li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>2. Conversion de types</h3>
+            <p>Comme input() retourne toujours une chaîne, il faut souvent convertir la valeur dans le type souhaité :</p>
+            
+            <div class="code-block">
+                # Conversion en entier<br>
+                age_str = input("Quel âge avez-vous ? ")<br>
+                age = int(age_str)  # Conversion de str vers int<br>
+                <br>
+                # Conversion en float<br>
+                taille_str = input("Quelle est votre taille (en mètres) ? ")<br>
+                taille = float(taille_str)  # Conversion de str vers float
+            </div>
+
+            <p>Fonctions de conversion courantes :</p>
+            <ul>
+                <li><strong>int()</strong> : Convertit en nombre entier</li>
+                <li><strong>float()</strong> : Convertit en nombre à virgule flottante</li>
+                <li><strong>str()</strong> : Convertit en chaîne de caractères</li>
+                <li><strong>bool()</strong> : Convertit en booléen</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>3. Gestion des erreurs de saisie</h3>
+            <p>Si l'utilisateur entre des données non valides, des erreurs peuvent survenir. Utilisez <strong>try/except</strong> pour les gérer :</p>
+
+            <div class="code-block">
+                try:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;prix_str = input("Prix du tajine (en DH) : ")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;prix = float(prix_str)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;nombre_str = input("Nombre de personnes : ")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;nombre = int(nombre_str)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;total = prix * nombre<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Total à payer : {total:.2f} DH")<br>
+                except ValueError:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("Erreur : Veuillez entrer des nombres valides")
+            </div>
+
+            <p>Bonnes pratiques :</p>
+            <ul>
+                <li>Toujours vérifier les saisies utilisateur</li>
+                <li>Prévoir des messages d'erreur clairs</li>
+                <li>Gérer spécifiquement les différents types d'erreurs</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>4. Exemple pratique - Calculateur de voyage</h3>
+            <p>Voici un exemple complet d'interface utilisateur simple pour calculer le coût d'un voyage au Maroc :</p>
+
+            <div class="code-block">
+                def calculer_cout_voyage():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("\n=== Calculateur de Voyage au Maroc ===")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;# Saisie des informations de base<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;try:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Nombre de jours<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jours = int(input("Nombre de jours de voyage : "))<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Budget hébergement<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prix_hotel = float(input("Prix de l'hôtel par nuit (DH) : "))<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Budget nourriture<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;budget_nourriture = float(input("Budget nourriture par jour (DH) : "))<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Calcul du total<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total_hotel = jours * prix_hotel<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total_nourriture = jours * budget_nourriture<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total_voyage = total_hotel + total_nourriture<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Affichage détaillé<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("\nRécapitulatif du voyage :")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Hébergement : {total_hotel:.2f} DH")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Nourriture  : {total_nourriture:.2f} DH")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Total       : {total_voyage:.2f} DH")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;except ValueError:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Erreur : Veuillez entrer des nombres valides")<br>
+                <br>
+                # Exécution du calculateur<br>
+                calculer_cout_voyage()
+            </div>
+
+            <p>Résultat d'exécution :</p>
+            <div class="code-interactive">
+                <span class="output">=== Calculateur de Voyage au Maroc ===</span><br>
+                <span class="prompt">Nombre de jours de voyage : </span>5<br>
+                <span class="prompt">Prix de l'hôtel par nuit (DH) : </span>350<br>
+                <span class="prompt">Budget nourriture par jour (DH) : </span>200<br>
+                <span class="output">
+Récapitulatif du voyage :
+Hébergement : 1750.00 DH
+Nourriture  : 1000.00 DH
+Total       : 2750.00 DH</span>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h3>5. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+
+            <ol>
+                <li>
+                    <strong>Saisie simple :</strong>
+                    <ul>
+                        <li>Créez un programme qui demande des informations sur une équipe de foot</li>
+                        <li>Demandez le nom, l'année de création, le nombre de titres</li>
+                        <li>Affichez un résumé formaté</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Calculateur de prix :</strong>
+                    <ul>
+                        <li>Créez un programme pour une boutique de souvenirs</li>
+                        <li>Demandez les prix et quantités</li>
+                        <li>Gérez les réductions selon le montant</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Gestionnaire de réservation :</strong>
+                    <ul>
+                        <li>Créez un système de réservation pour un riad</li>
+                        <li>Demandez dates, nombre de personnes, options</li>
+                        <li>Calculez le prix total</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet : Guide touristique interactif</strong>
+                    <ul>
+                        <li>Créez un programme qui guide les touristes</li>
+                        <li>Demandez préférences et budget</li>
+                        <li>Proposez des activités adaptées</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

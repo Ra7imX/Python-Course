@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY115 - Parcourir une liste - indices et éléments | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY115 - Parcourir une liste - indices et éléments</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY115</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY114.html" class="prev">← Précédent: PY114</a>
+                <a href="PY116.html" class="next">Suivant: PY116 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Parcourir une liste - indices et éléments</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre les différentes façons de parcourir une liste</li>
+                <li>Maîtriser l'utilisation des indices</li>
+                <li>Utiliser enumerate() efficacement</li>
+                <li>Appliquer les techniques d'itération dans des cas pratiques</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Parcours simple</h3>
+            <div class="code-block">
+                villes_maroc = ["Casablanca", "Rabat", "Fès", "Marrakech"]<br>
+                <br>
+                # Parcours des éléments<br>
+                print("Parcours simple des villes:")<br>
+                for ville in villes_maroc:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Visite de {ville}")<br>
+                <br>
+                # Parcours avec index manuel<br>
+                print("\nParcours avec index:")<br>
+                for i in range(len(villes_maroc)):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Ville {i+1}: {villes_maroc[i]}")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Utilisation de enumerate()</h3>
+            <div class="code-block">
+                sites_touristiques = ["Jamaa El Fna", "Médina de Fès", "Hassan II"]<br>
+                <br>
+                print("\nParcours avec enumerate:")<br>
+                for index, site in enumerate(sites_touristiques, 1):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Site {index}: {site}")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Parcours de plusieurs listes simultanément</h3>
+            <div class="code-block">
+                villes = ["Marrakech", "Agadir", "Tanger"]<br>
+                hotels = ["Riad Luxe", "Palm Resort", "Marina Spa"]<br>
+                prix = [1200, 800, 950]<br>
+                <br>
+                print("\nInformations des hôtels:")<br>
+                for ville, hotel, tarif in zip(villes, hotels, prix):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"{hotel} à {ville} - {tarif} DH/nuit")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Exemple pratique - Système de gestion de voyage</h3>
+            <div class="code-block">
+                class GestionVoyage:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.destinations = [<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ville": "Marrakech",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sites": ["Jamaa El Fna", "Jardins Majorelle", "Koutoubia"],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hotels": ["Riad Luxe", "Palais Oriental", "Atlas Resort"],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"prix_hotels": [1500, 1200, 800]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"ville": "Fès",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sites": ["Médina", "Bab Boujloud", "Médersa"],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hotels": ["Riad Fès", "Palais Médina", "Dar Traditional"],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"prix_hotels": [1300, 1000, 700]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;def afficher_details_destination(self, ville):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for dest in self.destinations:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if dest["ville"].lower() == ville.lower():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"\n=== Détails pour {dest['ville']} ===")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("\nSites touristiques:")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for i, site in enumerate(dest['sites'], 1):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"{i}. {site}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("\nHôtels disponibles:")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for hotel, prix in zip(dest['hotels'], dest['prix_hotels']):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"- {hotel}: {prix} DH/nuit")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Destination {ville} non trouvée")<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;def rechercher_hotels_budget(self, budget):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"\nHôtels disponibles pour un budget de {budget} DH/nuit:")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hotels_trouves = False<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for dest in self.destinations:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"\nÀ {dest['ville']}:")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for hotel, prix in zip(dest['hotels'], dest['prix_hotels']):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if prix <= budget:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"- {hotel} ({prix} DH)")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hotels_trouves = True<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if not hotels_trouves:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Aucun hôtel trouvé dans ce budget")<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;def planifier_circuit(self, duree_max):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"\nCircuit proposé ({duree_max} jours):")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jours_restants = duree_max<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for i, dest in enumerate(self.destinations, 1):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if jours_restants <= 0:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jours_ville = min(3, jours_restants)  # Maximum 3 jours par ville<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"\nÉtape {i}: {dest['ville']} ({jours_ville} jours)")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Programme suggéré:")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for jour in range(1, jours_ville + 1):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sites_jour = dest['sites'][(jour-1)%len(dest['sites'])]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Jour {jour}: Visite de {sites_jour}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jours_restants -= jours_ville<br>
+                <br>
+                # Test du système<br>
+                voyage = GestionVoyage()<br>
+                voyage.afficher_details_destination("Marrakech")<br>
+                voyage.rechercher_hotels_budget(1000)<br>
+                voyage.planifier_circuit(5)
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>5. Notes techniques importantes</h3>
+            <ul>
+                <li><strong>Méthodes de parcours :</strong>
+                    <ul>
+                        <li>Boucle for simple : pour les éléments</li>
+                        <li>range + index : pour accès par position</li>
+                        <li>enumerate : pour élément et position</li>
+                        <li>zip : pour plusieurs listes en parallèle</li>
+                    </ul>
+                </li>
+                <li><strong>Bonnes pratiques :</strong>
+                    <ul>
+                        <li>Choisir la méthode adaptée au besoin</li>
+                        <li>Utiliser enumerate plutôt que range quand possible</li>
+                        <li>Préférer les parcours simples sauf nécessité</li>
+                    </ul>
+                </li>
+                <li><strong>Points d'attention :</strong>
+                    <ul>
+                        <li>Ne pas modifier la liste pendant l'itération</li>
+                        <li>Vérifier les indices lors de l'accès direct</li>
+                        <li>Gestion des listes de tailles différentes avec zip</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section class="exercises">
+            <h3>6. Exercices pratiques</h3>
+            <ol>
+                <li><strong>Gestion de réservations :</strong>
+                    <ul>
+                        <li>Créez un système de réservation d'hôtel</li>
+                        <li>Parcourez les disponibilités</li>
+                        <li>Gérez les réservations multiples</li>
+                    </ul>
+                </li>
+                <li><strong>Guide touristique :</strong>
+                    <ul>
+                        <li>Créez un guide des sites touristiques</li>
+                        <li>Implémentez différents types de recherche</li>
+                        <li>Ajoutez des filtres et tris</li>
+                    </ul>
+                </li>
+                <li><strong>Planning d'activités :</strong>
+                    <ul>
+                        <li>Créez un planning journalier</li>
+                        <li>Gérez les horaires et durées</li>
+                        <li>Optimisez l'organisation</li>
+                    </ul>
+                </li>
+                <li><strong>Projet : Agence de voyages :</strong>
+                    <ul>
+                        <li>Développez une application complète</li>
+                        <li>Intégrez toutes les fonctionnalités vues</li>
+                        <li>Gérez des données réelles</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

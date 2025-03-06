@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY116 - Les tuples - Caractéristiques et utilisation | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY116 - Les tuples - Caractéristiques et utilisation</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY116</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY115.html" class="prev">← Précédent: PY115</a>
+                <a href="PY117.html" class="next">Suivant: PY117 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Les tuples - Caractéristiques et utilisation</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre les caractéristiques des tuples</li>
+                <li>Maîtriser la création et l'utilisation des tuples</li>
+                <li>Savoir quand utiliser les tuples plutôt que les listes</li>
+                <li>Appliquer les tuples dans des cas pratiques</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Création de tuples</h3>
+            <div class="code-block">
+                # Création directe<br>
+                coordonnees_koutoubia = (31.6242, -7.9892)<br>
+                horaires_musee = (9, 00, 17, 30)<br>
+                <br>
+                # Création par conversion<br>
+                villes_royales = tuple(["Fès", "Meknès", "Rabat", "Marrakech"])<br>
+                <br>
+                # Tuple à un élément (noter la virgule)<br>
+                destination = ("Marrakech",)
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Accès aux éléments</h3>
+            <div class="code-block">
+                # Accès par index<br>
+                latitude = coordonnees_koutoubia[0]<br>
+                longitude = coordonnees_koutoubia[1]<br>
+                <br>
+                # Unpacking (déballage)<br>
+                heure_ouverture, min_ouverture, heure_fermeture, min_fermeture = horaires_musee<br>
+                print(f"Ouverture : {heure_ouverture}h{min_ouverture}")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Utilisation pratique des tuples</h3>
+            <div class="code-block">
+                class LieuTouristique:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, nom, coordonnees, horaires):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.nom = nom<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.coordonnees = coordonnees  # tuple (latitude, longitude)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.horaires = horaires        # tuple (heure_ouv, min_ouv, heure_ferm, min_ferm)<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;def afficher_informations(self):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lat, lon = self.coordonnees<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;h_ouv, m_ouv, h_ferm, m_ferm = self.horaires<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"\nInformations pour {self.nom}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Coordonnées: {lat}°N, {lon}°E")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Horaires: {h_ouv:02d}h{m_ouv:02d} - {h_ferm:02d}h{m_ferm:02d}")<br>
+                <br>
+                # Création d'instances<br>
+                jamaa_el_fna = LieuTouristique(<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"Place Jemaa el-Fna",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;(31.6287, -7.9892),<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;(8, 0, 23, 0)<br>
+                )<br>
+                <br>
+                jardin_majorelle = LieuTouristique(<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"Jardin Majorelle",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;(31.6417, -7.9892),<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;(8, 30, 17, 30)<br>
+                )
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Exemple pratique - Circuit touristique</h3>
+            <div class="code-block">
+                def creer_circuit_touristique():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;# Structure: (nom, (latitude, longitude), (durée_visite_heures, prix_entree))<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;points_interet = [<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("Médina de Fès", (34.0333, -5.0000), (4, 0)),<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("Volubilis", (34.0697, -5.5549), (2, 70)),<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("Mosquée Hassan II", (33.6067, -7.6327), (1, 120)),<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("Kasbah des Oudayas", (34.0247, -6.8367), (2, 20))<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;]<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("\n=== Circuit Touristique au Maroc ===")<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;duree_totale = 0<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;cout_total = 0<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;for site in points_interet:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nom, coords, details = site<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duree, prix = details<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lat, lon = coords<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"\nSite : {nom}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Localisation : {lat}°N, {lon}°E")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Durée de visite : {duree}h")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Prix d'entrée : {prix} DH")<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duree_totale += duree<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout_total += prix<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"\nDurée totale du circuit : {duree_totale}h")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Coût total des entrées : {cout_total} DH")<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return duree_totale, cout_total  # Retourne un tuple<br>
+                <br>
+                # Test du circuit<br>
+                duree, cout = creer_circuit_touristique()
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>5. Notes techniques importantes</h3>
+            <ul>
+                <li><strong>Caractéristiques des tuples :</strong>
+                    <ul>
+                        <li>Immuables (non modifiables après création)</li>
+                        <li>Plus légers que les listes</li>
+                        <li>Peuvent être utilisés comme clés de dictionnaire</li>
+                        <li>Idéaux pour les données qui ne changent pas</li>
+                    </ul>
+                </li>
+                <li><strong>Cas d'utilisation :</strong>
+                    <ul>
+                        <li>Coordonnées géographiques</li>
+                        <li>Horaires</li>
+                        <li>Données de configuration</li>
+                        <li>Retour multiple de fonctions</li>
+                    </ul>
+                </li>
+                <li><strong>Avantages :</strong>
+                    <ul>
+                        <li>Protection contre la modification accidentelle</li>
+                        <li>Performance légèrement meilleure que les listes</li>
+                        <li>Code plus clair pour les données fixes</li>
+                    </ul>
+                </li>
+                <li><strong>Différences avec les listes :</strong>
+                    <ul>
+                        <li>Parenthèses () au lieu de crochets []</li>
+                        <li>Pas de méthodes de modification</li>
+                        <li>Immuabilité garantie</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section class="exercises">
+            <h3>6. Exercices pratiques</h3>
+            <ol>
+                <li><strong>Coordonnées géographiques :</strong>
+                    <ul>
+                        <li>Créez un système de points d'intérêt</li>
+                        <li>Stockez les coordonnées dans des tuples</li>
+                        <li>Calculez des distances entre points</li>
+                    </ul>
+                </li>
+                <li><strong>Horaires de sites :</strong>
+                    <ul>
+                        <li>Gérez les horaires d'ouverture de monuments</li>
+                        <li>Utilisez des tuples pour les créneaux horaires</li>
+                        <li>Vérifiez les disponibilités</li>
+                    </ul>
+                </li>
+                <li><strong>Configuration de voyage :</strong>
+                    <ul>
+                        <li>Créez des configurations de voyage</li>
+                        <li>Utilisez des tuples pour les données fixes</li>
+                        <li>Implémentez des vérifications de validité</li>
+                    </ul>
+                </li>
+                <li><strong>Projet : Guide touristique :</strong>
+                    <ul>
+                        <li>Développez un guide complet</li>
+                        <li>Utilisez des tuples pour les données permanentes</li>
+                        <li>Combinez avec d'autres structures de données</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

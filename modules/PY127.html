@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY127 - Les modules Python | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY127 - Les modules Python</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY127</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY126.html" class="prev">← Précédent: PY126</a>
+                <a href="PY128.html" class="next">Suivant: PY128 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Introduction aux modules Python</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre l'importation de modules</li>
+                <li>Utiliser les modules standards</li>
+                <li>Créer ses propres modules</li>
+                <li>Organiser son code en modules</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Import de modules standards</h3>
+            <p>Python propose de nombreux modules standards pour faciliter le développement. Voici quelques exemples :</p>
+            <div class="code-block">
+                import random<br>
+                import datetime<br>
+                import math<br>
+                from decimal import Decimal
+            </div>
+            <p>Ces modules permettent de générer des nombres aléatoires, manipuler des dates, effectuer des calculs mathématiques, et travailler avec des nombres décimaux de manière précise.</p>
+        </section>
+
+        <section class="section">
+            <h3>2. Utilisation des modules pour un système hôtelier</h3>
+            <p>Voici un exemple de classe utilisant plusieurs modules pour gérer un système hôtelier :</p>
+            <div class="code-block">
+                class SystemeHotelierAvance:<br>
+                &nbsp;&nbsp;def __init__(self):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;self.chambres = {}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;self.reservations = {}<br>
+                <br>
+                &nbsp;&nbsp;def generer_numero_reservation(self):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;prefix = datetime.datetime.now().strftime("%Y%m")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;suffix = str(random.randint(1000, 9999))<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return f"RES-{prefix}-{suffix}"<br>
+                <br>
+                &nbsp;&nbsp;def calculer_prix_total(self, prix_base, taxes=0.2):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;prix = Decimal(str(prix_base))<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;taxe = prix * Decimal(str(taxes))<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return prix + taxe<br>
+                <br>
+                &nbsp;&nbsp;def calculer_distance(self, point1, point2):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return math.sqrt(<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(point2[0] - point1[0])**2 + <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(point2[1] - point1[1])**2<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;)
+            </div>
+            <p>Cette classe utilise les modules <code>datetime</code>, <code>random</code>, <code>math</code>, et <code>decimal</code> pour gérer les réservations, calculer les prix et les distances.</p>
+        </section>
+
+        <section class="section">
+            <h3>3. Création de modules personnalisés</h3>
+            <p>Vous pouvez créer vos propres modules pour organiser votre code. Par exemple, un module <code>hotel_utils.py</code> pourrait contenir :</p>
+            <div class="code-block">
+                def formater_prix(prix):<br>
+                &nbsp;&nbsp;return f"{prix:,.2f} DH"<br>
+                <br>
+                def valider_numero_chambre(numero):<br>
+                &nbsp;&nbsp;return len(numero) == 3 and numero.isdigit()<br>
+                <br>
+                def generer_code_reservation():<br>
+                &nbsp;&nbsp;import random<br>
+                &nbsp;&nbsp;import string<br>
+                &nbsp;&nbsp;chars = string.ascii_uppercase + string.digits<br>
+                &nbsp;&nbsp;return ''.join(random.choices(chars, k=8))
+            </div>
+            <p>Ces fonctions peuvent ensuite être importées dans d'autres fichiers Python.</p>
+        </section>
+
+        <section class="section">
+            <h3>4. Organisation en modules</h3>
+            <p>Pour organiser un projet Python, vous pouvez structurer vos fichiers comme suit :</p>
+            <div class="code-block">
+                projet_hotel/<br>
+                &nbsp;&nbsp;├── __init__.py<br>
+                &nbsp;&nbsp;├── models/<br>
+                &nbsp;&nbsp;│   ├── __init__.py<br>
+                &nbsp;&nbsp;│   ├── client.py<br>
+                &nbsp;&nbsp;│   ├── chambre.py<br>
+                &nbsp;&nbsp;│   └── reservation.py<br>
+                &nbsp;&nbsp;├── utils/<br>
+                &nbsp;&nbsp;│   ├── __init__.py<br>
+                &nbsp;&nbsp;│   ├── validation.py<br>
+                &nbsp;&nbsp;│   └── formatage.py<br>
+                &nbsp;&nbsp;└── services/<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── __init__.py<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── reservation_service.py<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;└── facturation_service.py
+            </div>
+            <p>Cette structure permet de séparer les responsabilités et de maintenir un code propre et modulaire.</p>
+        </section>
+
+        <section class="section">
+            <h3>5. Exemple pratique - Utilisation des modules</h3>
+            <p>Voici un exemple d'utilisation des modules standards :</p>
+            <div class="code-block">
+                def demonstration_modules():<br>
+                &nbsp;&nbsp;# Utilisation de datetime<br>
+                &nbsp;&nbsp;maintenant = datetime.datetime.now()<br>
+                &nbsp;&nbsp;print(f"Date actuelle: {maintenant.strftime('%d/%m/%Y')}")<br>
+                <br>
+                &nbsp;&nbsp;# Utilisation de random<br>
+                &nbsp;&nbsp;numeros_chambres = random.sample(range(100, 150), 5)<br>
+                &nbsp;&nbsp;print(f"Chambres sélectionnées: {numeros_chambres}")<br>
+                <br>
+                &nbsp;&nbsp;# Utilisation de math<br>
+                &nbsp;&nbsp;surface_chambre = math.floor(5.7 * 4.2)<br>
+                &nbsp;&nbsp;print(f"Surface de la chambre: {surface_chambre}m²")<br>
+                <br>
+                &nbsp;&nbsp;# Utilisation de Decimal pour les calculs précis<br>
+                &nbsp;&nbsp;prix = Decimal('199.99')<br>
+                &nbsp;&nbsp;taxe = Decimal('0.20')<br>
+                &nbsp;&nbsp;total = prix * (1 + taxe)<br>
+                &nbsp;&nbsp;print(f"Prix total: {total:.2f} DH")
+            </div>
+            <p>Ce code montre comment utiliser les modules <code>datetime</code>, <code>random</code>, <code>math</code>, et <code>decimal</code> pour effectuer différentes tâches.</p>
+        </section>
+
+        <section class="exercises">
+            <h3>6. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+            <ol>
+                <li>
+                    <strong>Gestion des dates :</strong>
+                    <ul>
+                        <li>Créez un module de gestion des dates</li>
+                        <li>Utilisez <code>datetime</code> et <code>calendar</code></li>
+                        <li>Implémentez des conversions de format</li>
+                        <li>Ajoutez des calculs de durée</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Utilitaires mathématiques :</strong>
+                    <ul>
+                        <li>Développez un module de calculs</li>
+                        <li>Utilisez <code>math</code> et <code>decimal</code></li>
+                        <li>Implémentez des fonctions financières</li>
+                        <li>Ajoutez des validations</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Module de configuration :</strong>
+                    <ul>
+                        <li>Créez un module de configuration</li>
+                        <li>Gérez différents environnements</li>
+                        <li>Implémentez le chargement de fichiers</li>
+                        <li>Ajoutez la validation de config</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet : Application modulaire :</strong>
+                    <ul>
+                        <li>Développez une application complète</li>
+                        <li>Organisez en modules cohérents</li>
+                        <li>Implémentez les dépendances</li>
+                        <li>Créez une documentation</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

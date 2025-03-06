@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY100 - L'environnement Python et l'IDLE | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY100 - L'environnement Python et l'IDLE</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY100</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/index.html" class="prev">← Retour</a>
+                <a href="PY101.html" class="next">Suivant: PY101 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Introduction à l'environnement Python et à l'IDLE</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre l'environnement Python</li>
+                <li>Se familiariser avec l'IDLE et l'interpréteur</li>
+                <li>Distinguer le mode interactif et le mode script</li>
+                <li>Connaître les outils de base du développement Python</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. L'environnement Python et ses composants</h3>
+            <p>L'environnement Python comprend plusieurs éléments essentiels :</p>
+
+            <ul>
+                <li>
+                    <strong>L'interpréteur Python :</strong>
+                    <ul>
+                        <li>Programme qui lit et exécute le code Python</li>
+                        <li>Version actuelle stable : Python 3.x</li>
+                        <li>Accessible via la commande 'python' ou 'python3'</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>IDLE (Integrated Development and Learning Environment) :</strong>
+                    <ul>
+                        <li>Éditeur de code intégré avec Python</li>
+                        <li>Deux modes : Shell (interactif) et Éditeur (fichiers)</li>
+                        <li>Fonctionnalités : coloration syntaxique, auto-complétion, débogage</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Le Shell Python (mode interactif) :</strong>
+                    <ul>
+                        <li>Symbole >>> indique que Python attend une commande</li>
+                        <li>Exécution immédiate des commandes</li>
+                        <li>Idéal pour tester rapidement du code</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>2. Différence entre mode interactif et mode script</h3>
+            
+            <p><strong>Mode Interactif (Shell) :</strong></p>
+            <div class="code-interactive">
+                <span class="prompt">>>></span> 2 + 2<br>
+                <span class="output">4</span><br>
+                <span class="prompt">>>></span> print("Salam Maroc!")<br>
+                <span class="output">Salam Maroc!</span>
+            </div>
+
+            <p><strong>Mode Script (Fichier .py) :</strong></p>
+            <ul>
+                <li>Le code est écrit dans un fichier</li>
+                <li>Exécuté en une fois avec F5 ou 'Run Module'</li>
+                <li>Permet de sauvegarder et réutiliser le code</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>3. Premier script dans l'éditeur</h3>
+            <div class="code-block">
+                print("Bienvenue dans votre premier script Python!")<br>
+                print("Vous utilisez l'éditeur IDLE")
+            </div>
+            <p>Résultat après exécution :</p>
+            <div class="code-interactive">
+                <span class="output">Bienvenue dans votre premier script Python!</span><br>
+                <span class="output">Vous utilisez l'éditeur IDLE</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Configuration de l'environnement</h3>
+            <p>Étapes pour bien démarrer :</p>
+
+            <ol>
+                <li>
+                    <strong>Installation de Python :</strong>
+                    <ul>
+                        <li>Télécharger depuis python.org</li>
+                        <li>Cocher "Add Python to PATH" pendant l'installation</li>
+                        <li>Vérifier l'installation : python --version</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Configuration de IDLE :</strong>
+                    <ul>
+                        <li>Options -> Configure IDLE</li>
+                        <li>Personnaliser la taille de police</li>
+                        <li>Choisir un thème de couleurs</li>
+                        <li>Configurer l'indentation (4 espaces recommandés)</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Organisation des fichiers :</strong>
+                    <ul>
+                        <li>Créer un dossier pour vos projets Python</li>
+                        <li>Utiliser des noms explicites pour vos fichiers</li>
+                        <li>Toujours ajouter l'extension .py</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>5. Raccourcis clavier essentiels</h3>
+            <p>Dans IDLE :</p>
+            <ul>
+                <li><strong>F5</strong> : Exécuter le script</li>
+                <li><strong>Ctrl+N</strong> : Nouveau fichier</li>
+                <li><strong>Ctrl+S</strong> : Sauvegarder</li>
+                <li><strong>Ctrl+Z</strong> : Annuler</li>
+                <li><strong>Alt+3</strong> : Commenter la ligne</li>
+                <li><strong>Alt+4</strong> : Décommenter la ligne</li>
+                <li><strong>Ctrl+]</strong> : Indenter</li>
+                <li><strong>Ctrl+[</strong> : Désindenter</li>
+            </ul>
+        </section>
+
+        <section class="exercises">
+            <h3>6. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+
+            <ol>
+                <li>
+                    <strong>Configuration de l'environnement :</strong>
+                    <ul>
+                        <li>Installez Python sur votre machine</li>
+                        <li>Vérifiez la version installée</li>
+                        <li>Créez un dossier 'projets_python'</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Familiarisation avec IDLE :</strong>
+                    <ul>
+                        <li>Ouvrez le shell et faites des calculs simples</li>
+                        <li>Créez un nouveau fichier et sauvegardez-le</li>
+                        <li>Testez les raccourcis clavier principaux</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Premier script :</strong>
+                    <ul>
+                        <li>Créez un fichier 'test_env.py'</li>
+                        <li>Ajoutez quelques instructions print()</li>
+                        <li>Exécutez et observez les résultats</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Exploration :</strong>
+                    <ul>
+                        <li>Testez la différence entre le shell et l'éditeur</li>
+                        <li>Essayez de modifier les préférences de IDLE</li>
+                        <li>Créez un script qui affiche des informations sur vous</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

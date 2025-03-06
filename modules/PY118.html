@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY118 - Manipulation des dictionnaires en Python | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY118 - Manipulation des dictionnaires en Python</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY118</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY117.html" class="prev">← Précédent: PY117</a>
+                <a href="PY119.html" class="next">Suivant: PY119 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Introduction à la manipulation des dictionnaires en Python</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Maîtriser les méthodes de modification</li>
+                <li>Comprendre les opérations avancées</li>
+                <li>Gérer les dictionnaires imbriqués</li>
+                <li>Appliquer les méthodes dans des cas réels</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Méthodes de base</h3>
+            <p>Les dictionnaires en Python permettent de stocker des données sous forme de paires clé-valeur. Voici quelques méthodes de base :</p>
+
+            <div class="code-block">
+                restaurant = {
+                    "nom": "Le Marocain",
+                    "type": "Traditionnel"
+                }
+
+                # Ajout et modification
+                restaurant["ville"] = "Marrakech"  # Ajout
+                restaurant["type"] = "Gastronomique"  # Modification
+
+                # Méthode update
+                restaurant.update({
+                    "telephone": "0524123456",
+                    "capacite": 50
+                })
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Méthodes de suppression</h3>
+            <p>Les dictionnaires offrent plusieurs méthodes pour supprimer des éléments :</p>
+
+            <div class="code-block">
+                # pop() - Supprime et retourne la valeur
+                tel = restaurant.pop("telephone")
+                print(f"Téléphone supprimé : {tel}")
+
+                # popitem() - Supprime et retourne le dernier élément
+                dernier_element = restaurant.popitem()
+                print(f"Élément supprimé : {dernier_element}")
+
+                # clear() - Vide le dictionnaire
+                menu_midi = {"plat": "Tajine", "prix": 80}
+                menu_midi.clear()
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Méthodes de consultation</h3>
+            <p>Les dictionnaires permettent de consulter les clés, valeurs et paires clé-valeur :</p>
+
+            <div class="code-block">
+                hotel = {
+                    "nom": "Atlas Resort",
+                    "services": ["Piscine", "Spa", "Restaurant"],
+                    "chambres": {
+                        "simple": 800,
+                        "double": 1200,
+                        "suite": 2000
+                    }
+                }
+
+                # keys(), values(), items()
+                print("\nServices disponibles:")
+                for service in hotel["services"]:
+                    print(f"- {service}")
+
+                print("\nTypes de chambres et prix:")
+                for type_chambre, prix in hotel["chambres"].items():
+                    print(f"- {type_chambre}: {prix} DH")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Exemple pratique - Gestion d'un hôtel</h3>
+            <p>Voici un exemple pratique de gestion d'un hôtel en utilisant des dictionnaires :</p>
+
+            <div class="code-block">
+                class GestionHotel:
+                    def __init__(self):
+                        self.hotel = {
+                            "info": {
+                                "nom": "Palais Marocain",
+                                "etoiles": 5,
+                                "adresse": "Avenue Mohammed V, Marrakech"
+                            },
+                            "chambres": {},
+                            "reservations": {},
+                            "services": set(["Restaurant", "Spa", "Piscine"])
+                        }
+                        
+                        # Initialisation des chambres
+                        for numero in range(101, 111):
+                            self.hotel["chambres"][numero] = {
+                                "type": "Standard",
+                                "prix": 1000,
+                                "disponible": True
+                            }
+                        for numero in range(201, 206):
+                            self.hotel["chambres"][numero] = {
+                                "type": "Suite",
+                                "prix": 2000,
+                                "disponible": True
+                            }
+                    
+                    def ajouter_service(self, service):
+                        """Ajoute un nouveau service à l'hôtel"""
+                        self.hotel["services"].add(service)
+                        print(f"Service ajouté : {service}")
+                    
+                    def reserver_chambre(self, numero, client):
+                        """Réserve une chambre"""
+                        if numero in self.hotel["chambres"]:
+                            chambre = self.hotel["chambres"][numero]
+                            if chambre["disponible"]:
+                                chambre["disponible"] = False
+                                self.hotel["reservations"][numero] = {
+                                    "client": client,
+                                    "date_reservation": "2024-02-24"  # Simplifié pour l'exemple
+                                }
+                                print(f"Chambre {numero} réservée pour {client}")
+                            else:
+                                print(f"Chambre {numero} non disponible")
+                        else:
+                            print(f"Chambre {numero} n'existe pas")
+                    
+                    def afficher_disponibilites(self):
+                        """Affiche les chambres disponibles"""
+                        print("\n=== Chambres disponibles ===")
+                        for numero, info in self.hotel["chambres"].items():
+                            if info["disponible"]:
+                                print(f"Chambre {numero} ({info['type']}): {info['prix']} DH")
+                    
+                    def modifier_prix(self, type_chambre, nouveau_prix):
+                        """Modifie le prix pour un type de chambre"""
+                        for chambre in self.hotel["chambres"].values():
+                            if chambre["type"] == type_chambre:
+                                chambre["prix"] = nouveau_prix
+                        print(f"Prix mis à jour pour les chambres {type_chambre}")
+
+                # Test de la gestion hôtelière
+                hotel = GestionHotel()
+                hotel.afficher_disponibilites()
+                hotel.reserver_chambre(101, "M. Hassan")
+                hotel.modifier_prix("Standard", 1200)
+                hotel.ajouter_service("Navette aéroport")
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h3>5. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+
+            <ol>
+                <li>
+                    <strong>Système de réservation :</strong>
+                    <ul>
+                        <li>Créez un système complet de réservation pour un hôtel</li>
+                        <li>Gérez l'ajout, la modification et l'annulation de réservations</li>
+                        <li>Implémentez la gestion des chambres (disponibilité, type, prix)</li>
+                        <li>Ajoutez un système de réductions dynamiques</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Base de données clients :</strong>
+                    <ul>
+                        <li>Développez un système de gestion de clients</li>
+                        <li>Permettez l'ajout, la mise à jour et la suppression de clients</li>
+                        <li>Gérez l'historique des séjours</li>
+                        <li>Implémentez un programme de fidélité</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Gestion d'inventaire :</strong>
+                    <ul>
+                        <li>Créez un système pour une boutique de souvenirs</li>
+                        <li>Gérez le stock, les prix, les fournisseurs</li>
+                        <li>Implémentez un système d'alertes de stock</li>
+                        <li>Ajoutez des statistiques de vente</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet : Système de gestion d'agence de voyage :</strong>
+                    <ul>
+                        <li>Développez une application complète</li>
+                        <li>Gérez les voyages, clients, réservations</li>
+                        <li>Implémentez un système de facturation</li>
+                        <li>Ajoutez des rapports statistiques</li>
+                        <li>Créez un tableau de bord pour le suivi des activités</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

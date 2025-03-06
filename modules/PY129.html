@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY129 - Bonnes pratiques de programmation Python | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY129 - Bonnes pratiques de programmation Python</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY129</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY128.html" class="prev">← Précédent: PY128</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Introduction aux bonnes pratiques de programmation Python</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre les conventions de code Python</li>
+                <li>Appliquer les bonnes pratiques de programmation</li>
+                <li>Écrire du code maintenable et lisible</li>
+                <li>Optimiser la qualité du code</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Convention de nommage</h3>
+            <p>Bonne pratique : noms explicites et conventions PEP 8</p>
+
+            <div class="code-block">
+                <p>Mauvais exemple :</p>
+                <pre>
+x = 500
+l = ["Casa", "Rabat"]
+def calc(a,b):
+    return a*b
+                </pre>
+                <p>Bon exemple :</p>
+                <pre>
+prix_chambre = 500
+villes_principales = ["Casablanca", "Rabat"]
+def calculer_prix_total(prix_unitaire, quantite):
+    return prix_unitaire * quantite
+                </pre>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Organisation du code</h3>
+            <div class="code-block">
+                <pre>
+class GestionHotel:
+    """
+    Classe de gestion d'hôtel suivant les bonnes pratiques
+    """
+    def __init__(self, nom_hotel):
+        self.nom_hotel = nom_hotel
+        self.chambres = {}
+        self.clients = {}
+        self._initialiser_chambres()  # Méthode privée, commence par _
+    
+    def _initialiser_chambres(self):
+        """Initialise les chambres disponibles (méthode privée)"""
+        self.chambres = {
+            "101": {"type": "standard", "prix": 800},
+            "102": {"type": "suite", "prix": 1500}
+        }
+    
+    @property
+    def nombre_chambres(self):
+        """Propriété pour obtenir le nombre de chambres"""
+        return len(self.chambres)
+    
+    def ajouter_client(self, id_client, nom, email=None):
+        """
+        Ajoute un nouveau client
+        
+        Args:
+            id_client (str): Identifiant unique du client
+            nom (str): Nom complet du client
+            email (str, optional): Email du client
+        
+        Returns:
+            bool: True si ajout réussi, False sinon
+        """
+        if id_client in self.clients:
+            return False
+            
+        self.clients[id_client] = {
+            "nom": nom,
+            "email": email
+        }
+        return True
+                </pre>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Documentation et commentaires</h3>
+            <div class="code-block">
+                <pre>
+class ReservationManager:
+    """
+    Gestionnaire de réservations d'hôtel.
+    
+    Cette classe gère l'ensemble des réservations, y compris:
+    - La création de nouvelles réservations
+    - La modification des réservations existantes
+    - L'annulation des réservations
+    - La génération de rapports
+    
+    Attributes:
+        reservations (dict): Dictionnaire des réservations actives
+        historique (list): Historique des réservations
+    """
+    
+    def __init__(self):
+        self.reservations = {}
+        self.historique = []
+    
+    def creer_reservation(self, client_id, chambre_id, dates):
+        """
+        Crée une nouvelle réservation.
+        
+        Args:
+            client_id (str): ID du client
+            chambre_id (str): Numéro de la chambre
+            dates (tuple): Tuple de (date_arrivee, date_depart)
+            
+        Returns:
+            str: ID de la réservation ou None si échec
+            
+        Raises:
+            ValueError: Si les dates sont invalides
+        """
+        # Validation des données
+        if not self._verifier_disponibilite(chambre_id, dates):
+            return None
+            
+        # Création de la réservation
+        reservation_id = self._generer_id_reservation()
+        self.reservations[reservation_id] = {
+            "client": client_id,
+            "chambre": chambre_id,
+            "dates": dates
+        }
+        
+        return reservation_id
+                </pre>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Gestion des erreurs et validation</h3>
+            <div class="code-block">
+                <pre>
+def valider_donnees_reservation(donnees):
+    """
+    Valide les données d'une réservation.
+    
+    Args:
+        donnees (dict): Données à valider
+        
+    Returns:
+        tuple: (bool, str) - (validité, message d'erreur)
+    """
+    champs_requis = ["client", "chambre", "dates"]
+    
+    # Vérification des champs requis
+    for champ in champs_requis:
+        if champ not in donnees:
+            return False, f"Champ requis manquant: {champ}"
+    
+    # Validation du format des données
+    try:
+        if not isinstance(donnees["client"], str):
+            return False, "ID client doit être une chaîne"
+            
+        if not isinstance(donnees["dates"], tuple):
+            return False, "Dates doivent être un tuple"
+            
+    except Exception as e:
+        return False, f"Erreur de validation: {str(e)}"
+    
+    return True, "Données valides"
+                </pre>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>5. Optimisation et performance</h3>
+            <div class="code-block">
+                <pre>
+class CacheReservation:
+    """
+    Gestionnaire de cache pour les réservations fréquentes.
+    Utilise un dictionnaire pour stocker les résultats fréquents.
+    """
+    def __init__(self, taille_max=100):
+        self._cache = {}
+        self._taille_max = taille_max
+    
+    def obtenir(self, cle):
+        """Récupère une valeur du cache"""
+        return self._cache.get(cle)
+    
+    def ajouter(self, cle, valeur):
+        """Ajoute une valeur au cache avec gestion de la taille"""
+        if len(self._cache) >= self._taille_max:
+            # Supprime la première entrée si le cache est plein
+            self._cache.pop(next(iter(self._cache)))
+        self._cache[cle] = valeur
+                </pre>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>6. Exemple pratique complet</h3>
+            <div class="code-block">
+                <pre>
+class HotelSystem:
+    """
+    Système complet de gestion hôtelière suivant les bonnes pratiques
+    """
+    def __init__(self, nom_hotel):
+        self.nom_hotel = nom_hotel
+        self.gestion_hotel = GestionHotel(nom_hotel)
+        self.reservations = ReservationManager()
+        self.cache = CacheReservation()
+        self._logger = self._initialiser_logger()
+    
+    def _initialiser_logger(self):
+        """Configure le système de logging"""
+        import logging
+        logging.basicConfig(
+            filename=f"{self.nom_hotel.lower()}_log.txt",
+            level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(message)s'
+        )
+        return logging.getLogger(self.nom_hotel)
+    
+    def traiter_reservation(self, donnees_reservation):
+        """
+        Traite une nouvelle réservation en suivant les bonnes pratiques
+        """
+        try:
+            # 1. Validation des données
+            valide, message = valider_donnees_reservation(donnees_reservation)
+            if not valide:
+                self._logger.error(f"Données invalides: {message}")
+                return False, message
+            
+            # 2. Vérification du cache
+            cache_key = f"{donnees_reservation['client']}_{donnees_reservation['dates']}"
+            if self.cache.obtenir(cache_key):
+                self._logger.info("Réservation trouvée dans le cache")
+                return True, "Réservation existante"
+            
+            # 3. Création de la réservation
+            reservation_id = self.reservations.creer_reservation(
+                donnees_reservation['client'],
+                donnees_reservation['chambre'],
+                donnees_reservation['dates']
+            )
+            
+            if reservation_id:
+                # 4. Mise en cache
+                self.cache.ajouter(cache_key, reservation_id)
+                self._logger.info(f"Nouvelle réservation créée: {reservation_id}")
+                return True, f"Réservation créée: {reservation_id}"
+            
+            self._logger.warning("Échec de création de réservation")
+            return False, "Échec de création de réservation"
+            
+        except Exception as e:
+            self._logger.error(f"Erreur lors du traitement: {str(e)}")
+            return False, f"Erreur système: {str(e)}"
+                </pre>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h3>7. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+
+            <ol>
+                <li>
+                    <strong>Refactoring de code :</strong>
+                    <ul>
+                        <li>Prenez un code existant</li>
+                        <li>Appliquez les bonnes pratiques</li>
+                        <li>Améliorez la documentation</li>
+                        <li>Optimisez les performances</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Système de validation :</strong>
+                    <ul>
+                        <li>Créez un système de validation complet</li>
+                        <li>Implémentez des vérifications robustes</li>
+                        <li>Gérez les erreurs proprement</li>
+                        <li>Documentez chaque validation</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Architecture modulaire :</strong>
+                    <ul>
+                        <li>Développez une architecture claire</li>
+                        <li>Séparez les responsabilités</li>
+                        <li>Créez des interfaces propres</li>
+                        <li>Documentez l'architecture</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet : Application professionnelle :</strong>
+                    <ul>
+                        <li>Développez une application complète</li>
+                        <li>Suivez toutes les bonnes pratiques</li>
+                        <li>Implémentez tests et documentation</li>
+                        <li>Créez un code maintenable</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY117 - Introduction aux dictionnaires en Python | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY117 - Introduction aux dictionnaires en Python</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY117</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY116.html" class="prev">← Précédent: PY116</a>
+                <a href="PY118.html" class="next">Suivant: PY118 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Introduction aux dictionnaires en Python</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre la structure des dictionnaires</li>
+                <li>Maîtriser la création et l'accès aux données</li>
+                <li>Apprendre les opérations de base sur les dictionnaires</li>
+                <li>Utiliser les dictionnaires dans des cas pratiques</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Création de dictionnaires</h3>
+            <p>Les dictionnaires en Python sont des collections de paires clé-valeur. Voici quelques exemples de création de dictionnaires :</p>
+
+            <div class="code-block">
+                # Dictionnaire simple
+                hotel = {
+                    "nom": "Riad Fès",
+                    "etoiles": 5,
+                    "ville": "Fès",
+                    "piscine": True
+                }
+
+                # Dictionnaire avec différents types de valeurs
+                restaurant = {
+                    "nom": "Dar Marrakech",
+                    "specialites": ["Tajine", "Couscous", "Pastilla"],
+                    "prix_moyen": 150.50,
+                    "livraison": False,
+                    "horaires": {
+                        "dejeuner": "12h-15h",
+                        "diner": "19h-23h"
+                    }
+                }
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Accès aux données</h3>
+            <p>Les dictionnaires permettent un accès facile aux données via des clés. Voici quelques méthodes d'accès :</p>
+
+            <div class="code-block">
+                # Accès direct avec clé
+                print(f"Nom de l'hôtel : {hotel['nom']}")
+
+                # Accès avec get() (plus sûr)
+                nb_etoiles = hotel.get('etoiles', 'Non classé')
+                print(f"Classification : {nb_etoiles} étoiles")
+
+                # Accès aux données imbriquées
+                print(f"Horaire dîner : {restaurant['horaires']['diner']}")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Exemple pratique - Système de réservation</h3>
+            <p>Voici un exemple pratique d'utilisation des dictionnaires dans un système de réservation :</p>
+
+            <div class="code-block">
+                class SystemeReservation:
+                    def __init__(self):
+                        # Dictionnaire des riads disponibles
+                        self.riads = {
+                            "riad1": {
+                                "nom": "Riad Royal",
+                                "chambres": {
+                                    "suite": {"prix": 1500, "disponible": True},
+                                    "standard": {"prix": 800, "disponible": True},
+                                    "familiale": {"prix": 1200, "disponible": False}
+                                },
+                                "services": ["Piscine", "Spa", "Restaurant"],
+                                "note": 4.8
+                            },
+                            "riad2": {
+                                "nom": "Riad Médina",
+                                "chambres": {
+                                    "suite": {"prix": 1200, "disponible": False},
+                                    "standard": {"prix": 600, "disponible": True}
+                                },
+                                "services": ["Restaurant", "Terrasse"],
+                                "note": 4.5
+                            }
+                        }
+                    
+                    def afficher_disponibilites(self):
+                        """Affiche les chambres disponibles pour chaque riad"""
+                        print("\n=== Disponibilités des Riads ===")
+                        for riad_id, info in self.riads.items():
+                            print(f"\n{info['nom']} (Note: {info['note']}/5)")
+                            print("Services:", ", ".join(info['services']))
+                            print("Chambres disponibles:")
+                            for type_chambre, details in info['chambres'].items():
+                                if details['disponible']:
+                                    print(f"- {type_chambre.title()}: {details['prix']} DH/nuit")
+                    
+                    def rechercher_par_budget(self, budget):
+                        """Recherche les chambres disponibles dans un budget donné"""
+                        print(f"\n=== Chambres disponibles pour {budget} DH ===")
+                        for riad_id, info in self.riads.items():
+                            print(f"\nDans {info['nom']}:")
+                            chambres_trouvees = False
+                            for type_chambre, details in info['chambres'].items():
+                                if details['disponible'] and details['prix'] <= budget:
+                                    print(f"- {type_chambre.title()}: {details['prix']} DH")
+                                    chambres_trouvees = True
+                            if not chambres_trouvees:
+                                print("Aucune chambre dans cette gamme de prix")
+
+                # Test du système
+                systeme = SystemeReservation()
+                systeme.afficher_disponibilites()
+                systeme.rechercher_par_budget(1000)
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h3>4. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+
+            <ol>
+                <li>
+                    <strong>Gestion d'un riad :</strong>
+                    <ul>
+                        <li>Créez un dictionnaire pour stocker les informations d'un riad</li>
+                        <li>Incluez les chambres, prix, équipements</li>
+                        <li>Affichez les informations de manière formatée</li>
+                        <li>Ajoutez une fonction de recherche par critères</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Guide touristique :</strong>
+                    <ul>
+                        <li>Créez un dictionnaire des sites touristiques de votre ville</li>
+                        <li>Pour chaque site, stockez : horaires, prix, description, note</li>
+                        <li>Ajoutez une fonction qui suggère un circuit selon le temps disponible</li>
+                        <li>Implémentez un système de recherche par catégorie</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Menu de restaurant :</strong>
+                    <ul>
+                        <li>Créez un dictionnaire pour le menu d'un restaurant marocain</li>
+                        <li>Organisez par catégorie (entrées, plats, desserts)</li>
+                        <li>Incluez prix, description, temps de préparation</li>
+                        <li>Ajoutez une fonction pour calculer le total d'une commande</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet : Application de voyage :</strong>
+                    <ul>
+                        <li>Créez une base de données de villes marocaines</li>
+                        <li>Pour chaque ville : hôtels, restaurants, activités, transport</li>
+                        <li>Implémentez des fonctions de recherche et filtrage</li>
+                        <li>Ajoutez un système de recommandation basé sur le budget</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

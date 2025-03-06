@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY101 - Premiers pas avec Python et la fonction print() | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY101 - Premiers pas avec Python et la fonction print()</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <a href="/modules/PY100.html">PY100</a>
+                <span>></span>
+                <span>PY101</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="PY100.html" class="prev">← Précédent: PY100</a>
+                <a href="PY102.html" class="next">Suivant: PY102 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Premiers pas avec Python et la fonction print()</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre la fonction print() et ses paramètres</li>
+                <li>Maîtriser différentes façons d'afficher du texte</li>
+                <li>Utiliser les caractères spéciaux et sauts de ligne</li>
+                <li>Explorer les options avancées de print()</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Les bases de la fonction print()</h3>
+            <p>La fonction <code>print()</code> est l'une des fonctions les plus fondamentales en Python. Elle permet d'afficher du texte et d'autres données à l'écran.</p>
+
+            <p><strong>Affichage simple :</strong></p>
+            <div class="code-block">
+                print("Marhaba!")  # Affiche: Marhaba!
+            </div>
+
+            <p><strong>Affichage de plusieurs éléments :</strong></p>
+            <div class="code-block">
+                print("Bienvenue au", "Maroc")  # Les éléments sont séparés par des espaces
+            </div>
+
+            <p><strong>Affichage avec différents types de données :</strong></p>
+            <div class="code-block">
+                print("La température à Marrakech:", 25, "degrés")  # Mélange texte et nombres
+            </div>
+
+            <p>Résultat après exécution :</p>
+            <div class="code-interactive">
+                <span class="output">Marhaba!</span><br>
+                <span class="output">Bienvenue au Maroc</span><br>
+                <span class="output">La température à Marrakech: 25 degrés</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Paramètres de la fonction print()</h3>
+            
+            <p><strong>Paramètre 'sep' : séparateur personnalisé</strong></p>
+            <p>Le paramètre <code>sep</code> permet de définir le séparateur entre les éléments affichés :</p>
+            <div class="code-block">
+                print("Casablanca", "Rabat", "Fès", sep=" ➔ ")<br>
+                print("Maroc", "Maghreb", "Afrique", sep=" | ")
+            </div>
+
+            <p><strong>Paramètre 'end' : fin de ligne personnalisée</strong></p>
+            <p>Le paramètre <code>end</code> permet de définir ce qui sera affiché à la fin de la ligne :</p>
+            <div class="code-block">
+                print("Le Maroc est", end=" ")<br>
+                print("un beau pays")  # Les deux print seront sur la même ligne
+            </div>
+
+            <p>Résultat après exécution :</p>
+            <div class="code-interactive">
+                <span class="output">Casablanca ➔ Rabat ➔ Fès</span><br>
+                <span class="output">Maroc | Maghreb | Afrique</span><br>
+                <span class="output">Le Maroc est un beau pays</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Caractères spéciaux</h3>
+            
+            <p>Python permet d'utiliser des caractères spéciaux dans les chaînes de caractères :</p>
+            
+            <div class="code-block">
+                print("Villes du Maroc:\n- Tanger\n- Agadir\n- Meknès")  # \n pour nouvelle ligne<br>
+                print("Prix du tajine: 50\tDH")  # \t pour tabulation<br>
+                print("Le restaurant \"Dar Zwin\" est excellent")  # \" pour les guillemets
+            </div>
+
+            <p>Caractères spéciaux courants :</p>
+            <ul>
+                <li><code>\n</code> : Saut de ligne</li>
+                <li><code>\t</code> : Tabulation</li>
+                <li><code>\"</code> : Guillemet double</li>
+                <li><code>\'</code> : Guillemet simple</li>
+                <li><code>\\</code> : Barre oblique inverse</li>
+            </ul>
+
+            <p>Résultat après exécution :</p>
+            <div class="code-interactive">
+                <span class="output">Villes du Maroc:</span><br>
+                <span class="output">- Tanger</span><br>
+                <span class="output">- Agadir</span><br>
+                <span class="output">- Meknès</span><br>
+                <span class="output">Prix du tajine: 50    DH</span><br>
+                <span class="output">Le restaurant "Dar Zwin" est excellent</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Formatage avancé</h3>
+            
+            <p>Python offre plusieurs méthodes pour formater des chaînes de caractères :</p>
+            
+            <p><strong>F-strings (Python 3.6+) :</strong></p>
+            <div class="code-block">
+                nom_ville = "Chefchaouen"<br>
+                altitude = 564<br>
+                print(f"La ville de {nom_ville} est à {altitude}m d'altitude")  # f-string
+            </div>
+
+            <p><strong>Méthode format() :</strong></p>
+            <div class="code-block">
+                print("La ville de {} est à {}m d'altitude".format(nom_ville, altitude))  # .format()
+            </div>
+
+            <p>Résultat après exécution :</p>
+            <div class="code-interactive">
+                <span class="output">La ville de Chefchaouen est à 564m d'altitude</span><br>
+                <span class="output">La ville de Chefchaouen est à 564m d'altitude</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>5. Exemples pratiques</h3>
+            
+            <p><strong>Menu de restaurant :</strong></p>
+            <div class="code-block">
+                print("-" * 40)  # Répétition de caractère<br>
+                print("Menu du Restaurant Marocain".center(40))  # Centrage<br>
+                print("-" * 40)<br>
+                print("1. Tajine de poulet\t\t65 DH")<br>
+                print("2. Couscous royal\t\t70 DH")<br>
+                print("3. Pastilla au poulet\t\t80 DH")<br>
+                print("-" * 40)
+            </div>
+
+            <p><strong>Informations touristiques :</strong></p>
+            <div class="code-block">
+                destinations = ["Marrakech", "Fès", "Meknès", "Rabat"]<br>
+                print("Circuit touristique:", *destinations, sep=" -> ")  # Unpacking de liste
+            </div>
+
+            <p>Résultat après exécution :</p>
+            <div class="code-interactive">
+                <span class="output">----------------------------------------</span><br>
+                <span class="output">      Menu du Restaurant Marocain      </span><br>
+                <span class="output">----------------------------------------</span><br>
+                <span class="output">1. Tajine de poulet        65 DH</span><br>
+                <span class="output">2. Couscous royal        70 DH</span><br>
+                <span class="output">3. Pastilla au poulet        80 DH</span><br>
+                <span class="output">----------------------------------------</span><br>
+                <span class="output">Circuit touristique: Marrakech -> Fès -> Meknès -> Rabat</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>6. Notes techniques importantes</h3>
+            
+            <ol>
+                <li>
+                    <strong>La fonction print() :</strong>
+                    <ul>
+                        <li>Affiche des objets sur la sortie standard</li>
+                        <li>Convertit automatiquement les objets en chaînes</li>
+                        <li>Ajoute par défaut un saut de ligne à la fin</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Paramètres principaux :</strong>
+                    <ul>
+                        <li><code>sep=" "</code> : Séparateur entre les arguments (espace par défaut)</li>
+                        <li><code>end="\n"</code> : Caractère de fin (saut de ligne par défaut)</li>
+                        <li><code>file=sys.stdout</code> : Flux de sortie (sortie standard par défaut)</li>
+                        <li><code>flush=False</code> : Vidage du buffer (False par défaut)</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Bonnes pratiques :</strong>
+                    <ul>
+                        <li>Utiliser les f-strings pour le formatage (Python 3.6+)</li>
+                        <li>Éviter les print() vides, préférer print("")</li>
+                        <li>Penser à la lisibilité du texte affiché</li>
+                        <li>Être cohérent dans le style d'affichage</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section class="exercises">
+            <h3>7. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+
+            <ol>
+                <li>
+                    <strong>Affichage simple :</strong>
+                    <ul>
+                        <li>Affichez "Je suis à [votre ville]"</li>
+                        <li>Affichez votre nom et votre âge sur la même ligne</li>
+                        <li>Créez une ligne de séparation avec des caractères '*'</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Formatage :</strong>
+                    <ul>
+                        <li>Créez un menu pour un café marocain</li>
+                        <li>Affichez les prix de 3 plats avec alignement</li>
+                        <li>Utilisez des f-strings pour afficher des calculs</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Caractères spéciaux :</strong>
+                    <ul>
+                        <li>Créez une liste de villes avec des tirets et sauts de ligne</li>
+                        <li>Affichez un tableau simple avec des tabulations</li>
+                        <li>Utilisez les guillemets dans un texte</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet mini :</strong>
+                    <ul>
+                        <li>Créez une petite interface textuelle pour une boutique</li>
+                        <li>Affichez un ticket de caisse formaté</li>
+                        <li>Utilisez différents styles d'affichage</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Défi :</strong>
+                    <ul>
+                        <li>Créez une carte du Maroc en ASCII art avec print()</li>
+                        <li>Affichez un calendrier simple</li>
+                        <li>Faites un affichage animé simple (plusieurs print)</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

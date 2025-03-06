@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY111 - La boucle for et l'utilisation de range() | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY111 - La boucle for et l'utilisation de range()</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY111</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY110.html" class="prev">← Précédent: PY110</a>
+                <a href="PY112.html" class="next">Suivant: PY112 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>La boucle for et l'utilisation de range()</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre la boucle for et son fonctionnement</li>
+                <li>Maîtriser la fonction range()</li>
+                <li>Itérer sur différentes séquences</li>
+                <li>Utiliser des boucles imbriquées</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Boucle for avec range()</h3>
+            <p>La boucle <strong>for</strong> est utilisée pour parcourir une séquence d'éléments. Avec <strong>range()</strong>, elle permet de répéter des actions un nombre précis de fois :</p>
+
+            <p><strong>Compteur simple :</strong></p>
+            <div class="code-block">
+                for i in range(5):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Tour de médina numéro {i+1}")
+            </div>
+
+            <p>Résultat :</p>
+            <div class="code-interactive">
+                <span class="output">Tour de médina numéro 1</span><br>
+                <span class="output">Tour de médina numéro 2</span><br>
+                <span class="output">Tour de médina numéro 3</span><br>
+                <span class="output">Tour de médina numéro 4</span><br>
+                <span class="output">Tour de médina numéro 5</span>
+            </div>
+
+            <p><strong>Range avec début et fin :</strong></p>
+            <div class="code-block">
+                for annee in range(2020, 2025):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Année touristique : {annee}")
+            </div>
+
+            <p><strong>Range avec pas :</strong></p>
+            <div class="code-block">
+                for prix in range(100, 501, 100):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Forfait disponible : {prix} DH")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Itération sur des séquences</h3>
+            <p>La boucle for peut parcourir n'importe quelle séquence : listes, chaînes de caractères, tuples, etc.</p>
+
+            <p><strong>Liste des villes :</strong></p>
+            <div class="code-block">
+                villes_imperiales = ["Fès", "Meknès", "Marrakech", "Rabat"]<br>
+                for ville in villes_imperiales:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Visite guidée de {ville}")
+            </div>
+
+            <p><strong>Chaîne de caractères :</strong></p>
+            <div class="code-block">
+                ville = "Agadir"<br>
+                for lettre in ville:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Lettre : {lettre}")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Énumération avec enumerate()</h3>
+            <p>La fonction <strong>enumerate()</strong> permet d'obtenir l'index et la valeur simultanément :</p>
+
+            <div class="code-block">
+                plats_marocains = ["Tajine", "Couscous", "Pastilla", "Harira"]<br>
+                for index, plat in enumerate(plats_marocains, 1):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Plat {index}: {plat}")
+            </div>
+
+            <p>Résultat :</p>
+            <div class="code-interactive">
+                <span class="output">Plat 1: Tajine</span><br>
+                <span class="output">Plat 2: Couscous</span><br>
+                <span class="output">Plat 3: Pastilla</span><br>
+                <span class="output">Plat 4: Harira</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Boucles imbriquées</h3>
+            <p>Les boucles for peuvent être imbriquées pour traiter des structures plus complexes :</p>
+
+            <div class="code-block">
+                jours = ["Lundi", "Mardi", "Mercredi"]<br>
+                activites = ["Médina", "Musée", "Jardin"]<br><br>
+                for jour in jours:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"\nProgramme du {jour}:")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;for activite in activites:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"- Visite: {activite}")
+            </div>
+
+            <p>Résultat :</p>
+            <div class="code-interactive">
+                <span class="output">Programme du Lundi:</span><br>
+                <span class="output">- Visite: Médina</span><br>
+                <span class="output">- Visite: Musée</span><br>
+                <span class="output">- Visite: Jardin</span><br>
+                <span class="output">Programme du Mardi:</span><br>
+                <span class="output">- Visite: Médina</span><br>
+                <span class="output">- Visite: Musée</span><br>
+                <span class="output">- Visite: Jardin</span><br>
+                <span class="output">Programme du Mercredi:</span><br>
+                <span class="output">- Visite: Médina</span><br>
+                <span class="output">- Visite: Musée</span><br>
+                <span class="output">- Visite: Jardin</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>5. Exemple pratique - Planning touristique</h3>
+            <p>Un exemple complet de planning de voyage utilisant les boucles for :</p>
+
+            <div class="code-block">
+                def creer_planning_voyage():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Crée un planning détaillé pour un voyage au Maroc<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;villes = {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Marrakech": ["Jemaa el-Fna", "Jardin Majorelle", "Médina"],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Fès": ["Médina", "Tanneries", "Médersa"],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Chefchaouen": ["Place Outa el Hammam", "Kasbah", "Médina bleue"]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("\n=== Planning de Voyage au Maroc ===")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;# Parcours des villes et leurs attractions<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;for num_jour, (ville, sites) in enumerate(villes.items(), 1):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"\nJour {num_jour} - {ville}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Programme :")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for num_site, site in enumerate(sites, 1):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"  {num_site}. {site}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Ajout d'informations temporelles<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;heure_debut = 9 + (num_site - 1) * 3<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;heure_fin = heure_debut + 2<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"     {heure_debut}h00 - {heure_fin}h00")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>6. Calculateur de budget voyage</h3>
+            <p>Un exemple pratique de calcul de budget avec des boucles for :</p>
+
+            <div class="code-block">
+                def calculer_budget_voyage():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Calcule le budget total pour un voyage au Maroc<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;avec différentes options<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;depenses_par_ville = {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Casablanca": {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hotel": 800,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"repas": 200,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"transport": 100<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Tanger": {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hotel": 600,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"repas": 150,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"transport": 80<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Essaouira": {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hotel": 500,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"repas": 150,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"transport": 70<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;total_voyage = 0<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("\n=== Budget détaillé par ville ===")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;for ville, depenses in depenses_par_ville.items():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"\nVille : {ville}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total_ville = 0<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for categorie, montant in depenses.items():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"  - {categorie.title()}: {montant} DH/jour")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total_ville += montant<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Total par jour à {ville}: {total_ville} DH")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total_voyage += total_ville<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"\nBudget total par jour: {total_voyage} DH")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;# Calcul pour différentes durées<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;for jours in [3, 5, 7]:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Budget pour {jours} jours: {total_voyage * jours} DH")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>7. Notes techniques importantes</h3>
+            
+            <p><strong>Syntaxe de base :</strong></p>
+            <div class="code-block">
+                for element in sequence:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;# code à exécuter
+            </div>
+
+            <p><strong>Fonction range() :</strong></p>
+            <ul>
+                <li><code>range(stop)</code> : génère des nombres de 0 jusqu'à stop-1</li>
+                <li><code>range(start, stop)</code> : génère des nombres de start jusqu'à stop-1</li>
+                <li><code>range(start, stop, step)</code> : génère des nombres de start jusqu'à stop-1 avec un pas défini</li>
+            </ul>
+
+            <p><strong>Bonnes pratiques :</strong></p>
+            <ul>
+                <li>Nommer clairement les variables d'itération</li>
+                <li>Éviter les boucles trop imbriquées</li>
+                <li>Utiliser enumerate() quand l'index est nécessaire</li>
+                <li>Préférer les boucles for aux boucles while quand possible</li>
+            </ul>
+        </section>
+
+        <section class="exercises">
+            <h3>8. Exercices pratiques</h3>
+            <ol>
+                <li>
+                    <strong>Itération simple :</strong>
+                    <ul>
+                        <li>Créez une liste de sites touristiques</li>
+                        <li>Affichez-les avec leur numéro</li>
+                        <li>Ajoutez des détails pour chaque site</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Calculs avec range :</strong>
+                    <ul>
+                        <li>Calculez différents forfaits touristiques</li>
+                        <li>Créez une grille tarifaire</li>
+                        <li>Appliquez des réductions progressives</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Boucles imbriquées :</strong>
+                    <ul>
+                        <li>Créez un planning hebdomadaire</li>
+                        <li>Gérez plusieurs villes et activités</li>
+                        <li>Ajoutez des horaires et durées</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet : Agence de voyage :</strong>
+                    <ul>
+                        <li>Créez un programme complet</li>
+                        <li>Gérez différentes options et tarifs</li>
+                        <li>Calculez les coûts totaux</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY122 - Fonctions et Retour de Valeurs | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY122 - Fonctions et Retour de Valeurs</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY122</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY121.html" class="prev">← Précédent: PY121</a>
+                <a href="PY123.html" class="next">Suivant: PY123 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Fonctions et Retour de Valeurs</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre l'instruction <code>return</code></li>
+                <li>Gérer les différents types de retour</li>
+                <li>Maîtriser les retours multiples</li>
+                <li>Utiliser les valeurs de retour efficacement</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Types de retour simples</h3>
+            <p>Exemple de fonction retournant un nombre :</p>
+            <div class="code-block">
+                def calculer_prix_ticket(destination, classe="économique"):
+                    tarifs = {
+                        "Marrakech": {"économique": 500, "business": 1200},
+                        "Fès": {"économique": 600, "business": 1400},
+                        "Tanger": {"économique": 450, "business": 1100}
+                    }
+                    
+                    if destination not in tarifs:
+                        return 0  # Retour anticipé si destination inconnue
+                    
+                    return tarifs[destination].get(classe, 0)
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Retour de structures de données</h3>
+            <p>Exemple de fonction retournant un dictionnaire :</p>
+            <div class="code-block">
+                def obtenir_info_ville(ville):
+                    infos = {
+                        "Marrakech": {
+                            "population": 1000000,
+                            "altitude": 463,
+                            "sites": ["Jemaa el-Fna", "Jardin Majorelle", "Koutoubia"]
+                        },
+                        "Chefchaouen": {
+                            "population": 42000,
+                            "altitude": 564,
+                            "sites": ["Médina bleue", "Kasbah", "Place Outa el Hammam"]
+                        }
+                    }
+                    
+                    return infos.get(ville, {"population": 0, "altitude": 0, "sites": []})
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Retours multiples</h3>
+            <p>Exemple de fonction retournant plusieurs valeurs :</p>
+            <div class="code-block">
+                def analyser_meteo(ville, mois):
+                    donnees = {
+                        "Agadir": {
+                            "température": 25,
+                            "ensoleillement": 300,  # heures/mois
+                            "précipitations": 20    # mm/mois
+                        }
+                    }
+                    
+                    if ville in donnees:
+                        info = donnees[ville]
+                        return info["température"], info["ensoleillement"], info["précipitations"]
+                    
+                    return None, None, None  # Retour multiple de valeurs None
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Exemple pratique - Système de réservation</h3>
+            <p>Exemple de classe avec différentes méthodes retournant des valeurs variées :</p>
+            <div class="code-block">
+                class ReservationVoyage:
+                    def __init__(self):
+                        self.destinations = {
+                            "Marrakech": {
+                                "hotels": ["Riad Luxe", "Atlas Resort"],
+                                "activites": ["Médina", "Jardins", "Spa"],
+                                "disponible": True
+                            },
+                            "Essaouira": {
+                                "hotels": ["Dar Ocean", "Riad Mogador"],
+                                "activites": ["Plage", "Médina", "Port"],
+                                "disponible": True
+                            }
+                        }
+                    
+                    def verifier_disponibilite(self, destination, dates):
+                        if destination not in self.destinations:
+                            return False, "Destination non trouvée"
+                        
+                        if not self.destinations[destination]["disponible"]:
+                            return False, "Destination non disponible pour ces dates"
+                        
+                        return True, "Disponible"
+                    
+                    def obtenir_options_sejour(self, destination):
+                        if destination not in self.destinations:
+                            return None
+                        
+                        info = self.destinations[destination]
+                        
+                        return {
+                            "hebergement": {
+                                "hotels": info["hotels"],
+                                "prix": {"Riad Luxe": 1500, "Atlas Resort": 800}
+                            },
+                            "activites": {
+                                "liste": info["activites"],
+                                "durees": {"Médina": 4, "Jardins": 2, "Spa": 3}
+                            },
+                            "transport": ["taxi", "bus touristique", "location voiture"]
+                        }
+                    
+                    def calculer_prix_total(self, destination, hotel, activites, transport):
+                        try:
+                            prix_total = 0
+                            details = []
+                            
+                            prix_hotels = {
+                                "Riad Luxe": 1500,
+                                "Atlas Resort": 800,
+                                "Dar Ocean": 1000,
+                                "Riad Mogador": 700
+                            }
+                            prix_hotel = prix_hotels.get(hotel, 0)
+                            prix_total += prix_hotel
+                            details.append(f"Hôtel {hotel}: {prix_hotel} DH")
+                            
+                            prix_activites = sum(100 for _ in activites)
+                            prix_total += prix_activites
+                            details.append(f"Activités: {prix_activites} DH")
+                            
+                            prix_transport = {
+                                "taxi": 300,
+                                "bus touristique": 150,
+                                "location voiture": 500
+                            }
+                            prix_transport = prix_transport.get(transport, 0)
+                            prix_total += prix_transport
+                            details.append(f"Transport: {prix_transport} DH")
+                            
+                            return prix_total, details
+                            
+                        except Exception as e:
+                            return None, f"Erreur de calcul: {str(e)}"
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h3>5. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+            <ol>
+                <li>Analyse de voyage : Créez une fonction qui analyse un itinéraire et retourne différentes métriques.</li>
+                <li>Gestionnaire de réservations : Développez des fonctions de vérification de disponibilité et retournez des structures de données complexes.</li>
+                <li>Calculateur touristique : Créez des fonctions de calcul de budgets et retournez des détails par catégorie.</li>
+                <li>Projet : Système de voyage complet : Développez plusieurs fonctions interconnectées avec différents types de retour.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

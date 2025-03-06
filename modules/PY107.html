@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY107 - Les chaînes de caractères et leurs méthodes essentielles | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY107 - Les chaînes de caractères et leurs méthodes essentielles</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY107</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="PY106.html" class="prev">← Précédent: PY106</a>
+                <a href="PY108.html" class="next">Suivant: PY108 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Les chaînes de caractères et leurs méthodes essentielles</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre les différentes façons de créer des chaînes</li>
+                <li>Maîtriser les méthodes de manipulation de chaînes</li>
+                <li>Utiliser le formatage de chaînes</li>
+                <li>Travailler avec les chaînes multilignes</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Création de chaînes</h3>
+            <p>Il existe plusieurs façons de créer des chaînes en Python :</p>
+
+            <div class="code-block">
+                ville_simple = 'Fès'              # Avec guillemets simples<br>
+                ville_double = "Meknès"          # Avec guillemets doubles<br>
+                description = """La ville de Fès<br>
+                est la capitale spirituelle<br>
+                du Maroc."""                     # Chaîne multiligne
+            </div>
+
+            <p>Points importants :</p>
+            <ul>
+                <li>Les guillemets simples et doubles sont équivalents</li>
+                <li>Les triples guillemets permettent de créer des chaînes sur plusieurs lignes</li>
+                <li>Les caractères spéciaux comme \n (nouvelle ligne) sont interprétés dans les chaînes</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>2. Opérations de base sur les chaînes</h3>
+            <p>Les chaînes de caractères supportent plusieurs opérations :</p>
+            
+            <div class="code-block">
+                # Concaténation<br>
+                nom_complet = "Médina " + "de " + "Fès"<br>
+                print(nom_complet)<br>
+                <br>
+                # Répétition<br>
+                ligne = "-" * 20<br>
+                print(ligne)<br>
+                <br>
+                # Longueur<br>
+                print(f"La chaîne 'Fès' a {len('Fès')} caractères")
+            </div>
+
+            <p>Résultat :</p>
+            <div class="code-interactive">
+                <span class="output">Médina de Fès</span><br>
+                <span class="output">--------------------</span><br>
+                <span class="output">La chaîne 'Fès' a 3 caractères</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Méthodes de chaînes courantes</h3>
+            <p>Les chaînes possèdent de nombreuses méthodes utiles :</p>
+
+            <div class="code-block">
+                texte = "marrakech la rouge"<br>
+                <br>
+                # Changement de casse<br>
+                print(texte.upper())        # MARRAKECH LA ROUGE<br>
+                print(texte.lower())        # marrakech la rouge<br>
+                print(texte.title())        # Marrakech La Rouge<br>
+                print(texte.capitalize())   # Marrakech la rouge<br>
+                <br>
+                # Recherche et remplacement<br>
+                adresse = "Avenue Mohammed V, Rabat"<br>
+                print(adresse.find("Rabat"))          # Position de "Rabat"<br>
+                print(adresse.replace("Rabat", "Salé")) # Remplace "Rabat" par "Salé"<br>
+                <br>
+                # Vérification du contenu<br>
+                numero = "123"<br>
+                texte = "Agadir"<br>
+                print(numero.isdigit())    # True<br>
+                print(texte.isalpha())     # True<br>
+                print(texte.startswith("A")) # True<br>
+                print(texte.endswith("r"))  # True
+            </div>
+
+            <p>Méthodes de chaînes courantes :</p>
+            <ul>
+                <li><strong>.upper()</strong> : Transforme en majuscules</li>
+                <li><strong>.lower()</strong> : Transforme en minuscules</li>
+                <li><strong>.title()</strong> : Met en majuscule la première lettre de chaque mot</li>
+                <li><strong>.capitalize()</strong> : Met en majuscule la première lettre de la chaîne</li>
+                <li><strong>.find()</strong> : Trouve la position d'une sous-chaîne</li>
+                <li><strong>.replace()</strong> : Remplace une sous-chaîne par une autre</li>
+                <li><strong>.isdigit()</strong> : Vérifie si tous les caractères sont des chiffres</li>
+                <li><strong>.isalpha()</strong> : Vérifie si tous les caractères sont des lettres</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>4. Formatage de chaînes</h3>
+            <p>Il existe plusieurs façons de formater des chaînes en Python :</p>
+
+            <div class="code-block">
+                # Ancien style avec %<br>
+                nom = "Hassan"<br>
+                age = 25<br>
+                print("Je m'appelle %s et j'ai %d ans" % (nom, age))<br>
+                <br>
+                # Méthode format()<br>
+                ville = "Tanger"<br>
+                pays = "Maroc"<br>
+                print("Je suis à {}, {}".format(ville, pays))<br>
+                <br>
+                # f-strings (recommandé)<br>
+                temperature = 25<br>
+                print(f"Il fait {temperature}°C à {ville}")
+            </div>
+
+            <p>Résultat :</p>
+            <div class="code-interactive">
+                <span class="output">Je m'appelle Hassan et j'ai 25 ans</span><br>
+                <span class="output">Je suis à Tanger, Maroc</span><br>
+                <span class="output">Il fait 25°C à Tanger</span>
+            </div>
+
+            <p>Avantages des f-strings :</p>
+            <ul>
+                <li>Syntaxe simple et lisible</li>
+                <li>Expressions Python directement dans les accolades</li>
+                <li>Performances améliorées</li>
+                <li>Formatage avancé (Ex: <code>f"{nombre:.2f}"</code>)</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>5. Manipulation avancée</h3>
+            <p>Les chaînes permettent des manipulations avancées comme le slicing :</p>
+
+            <div class="code-block">
+                # Slicing (découpage)<br>
+                mot = "Casablanca"<br>
+                print(mot[0:4])    # "Casa"<br>
+                print(mot[4:])     # "blanca"<br>
+                print(mot[-6:])    # "blanca"<br>
+                <br>
+                # Strip, split et join<br>
+                texte = "   Bienvenue au Maroc   "<br>
+                print(texte.strip())                    # Enlève les espaces<br>
+                villes = "Rabat,Casablanca,Fès"<br>
+                liste_villes = villes.split(",")        # Création d'une liste<br>
+                print("-".join(liste_villes))           # Joindre avec des tirets
+            </div>
+
+            <p>Résultat :</p>
+            <div class="code-interactive">
+                <span class="output">Casa</span><br>
+                <span class="output">blanca</span><br>
+                <span class="output">blanca</span><br>
+                <span class="output">Bienvenue au Maroc</span><br>
+                <span class="output">Rabat-Casablanca-Fès</span>
+            </div>
+
+            <p>Notes techniques importantes :</p>
+            <ul>
+                <li><strong>Slicing</strong> [début:fin:pas] : début inclus, fin exclue</li>
+                <li><strong>strip()</strong> : Enlève les espaces au début et à la fin</li>
+                <li><strong>split()</strong> : Découpe une chaîne en liste selon un séparateur</li>
+                <li><strong>join()</strong> : Joindre les éléments d'une liste en une chaîne</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>6. Exemples pratiques</h3>
+            <p>Fonction pour formater une adresse marocaine :</p>
+
+            <div class="code-block">
+                def formatter_adresse_marocaine(rue, quartier, ville, code_postal):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"""Formate une adresse marocaine"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;adresse = f"""<br>
+                {rue.title()}<br>
+                {quartier.title()}<br>
+                {ville.upper()}, {code_postal}<br>
+                MAROC<br>
+                """.strip()<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return adresse<br>
+                <br>
+                # Exemple d'utilisation<br>
+                adresse = formatter_adresse_marocaine(<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"rue ibn battouta 123",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"quartier hassan",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"rabat",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"10000"<br>
+                )<br>
+                print("\nAdresse formatée :")<br>
+                print(adresse)
+            </div>
+
+            <p>Résultat :</p>
+            <div class="code-interactive">
+                <span class="output">
+Adresse formatée :
+Rue Ibn Battouta 123
+Quartier Hassan
+RABAT, 10000
+MAROC</span>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h3>7. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+
+            <ol>
+                <li>
+                    <strong>Manipulation de base :</strong>
+                    <ul>
+                        <li>Créez des chaînes décrivant des sites touristiques</li>
+                        <li>Utilisez différentes méthodes de formatage</li>
+                        <li>Combinez plusieurs opérations</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Formatage d'adresses :</strong>
+                    <ul>
+                        <li>Créez un système de formatage d'adresses marocaines</li>
+                        <li>Gérez la casse et la mise en forme</li>
+                        <li>Validez les entrées</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Traitement de texte :</strong>
+                    <ul>
+                        <li>Créez un programme qui analyse un texte</li>
+                        <li>Comptez les mots, phrases</li>
+                        <li>Formatez le texte selon des règles</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet : Guide touristique :</strong>
+                    <ul>
+                        <li>Créez des descriptions de villes</li>
+                        <li>Formatez-les de manière professionnelle</li>
+                        <li>Ajoutez des fonctionnalités de recherche</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

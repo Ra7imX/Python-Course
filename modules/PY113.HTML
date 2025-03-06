@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY113 - Les listes - Création et manipulation de base | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY113 - Les listes - Création et manipulation de base</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY113</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY112.html" class="prev">← Précédent: PY112</a>
+                <a href="PY114.html" class="next">Suivant: PY114 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Les listes - Création et manipulation de base</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre la création et l'initialisation des listes</li>
+                <li>Maîtriser l'accès et la modification des éléments</li>
+                <li>Apprendre les opérations de base sur les listes</li>
+                <li>Utiliser le slicing sur les listes</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Création de listes</h3>
+            <p>Différentes façons de créer des listes :</p>
+            <div class="code-block">
+                villes_maroc = ["Casablanca", "Rabat", "Fès", "Marrakech"]<br>
+                notes_voyage = [18, 15, 17, 19, 16]<br>
+                liste_mixte = ["Tanger", 35, True, 450.75]<br>
+                liste_vide = []<br>
+                <br>
+                # Liste par compréhension<br>
+                temperatures = [temp for temp in range(20, 31, 2)]  # [20, 22, 24, 26, 28, 30]
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Accès aux éléments</h3>
+            <p>Accès par index :</p>
+            <div class="code-block">
+                premiere_ville = villes_maroc[0]      # Premier élément<br>
+                derniere_ville = villes_maroc[-1]     # Dernier élément<br>
+                <br>
+                print(f"Première ville : {premiere_ville}")<br>
+                print(f"Dernière ville : {derniere_ville}")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Modification d'éléments</h3>
+            <p>Modification simple :</p>
+            <div class="code-block">
+                villes_maroc[1] = "Meknès"<br>
+                print(f"Liste mise à jour : {villes_maroc}")<br>
+                <br>
+                # Modification multiple<br>
+                villes_maroc[1:3] = ["Tétouan", "Tanger"]<br>
+                print(f"Après modification multiple : {villes_maroc}")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Slicing (découpage)</h3>
+            <p>Extraire une partie de la liste :</p>
+            <div class="code-block">
+                plats_marocains = ["Tajine", "Couscous", "Pastilla", "Harira", "Tanjia"]<br>
+                <br>
+                premiers_plats = plats_marocains[0:2]    # ["Tajine", "Couscous"]<br>
+                derniers_plats = plats_marocains[-2:]    # ["Harira", "Tanjia"]<br>
+                plats_milieu = plats_marocains[1:4]      # ["Couscous", "Pastilla", "Harira"]<br>
+                <br>
+                # Slicing avec pas<br>
+                plats_alternes = plats_marocains[::2]    # ["Tajine", "Pastilla", "Tanjia"]
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>5. Opérations sur les listes</h3>
+            <p>Concaténation et répétition :</p>
+            <div class="code-block">
+                restaurants_casa = ["Rest1", "Rest2"]<br>
+                restaurants_rabat = ["Rest3", "Rest4"]<br>
+                tous_restaurants = restaurants_casa + restaurants_rabat<br>
+                <br>
+                # Répétition<br>
+                ligne_separation = ["-"] * 20<br>
+                <br>
+                # Vérification d'appartenance<br>
+                if "Tajine" in plats_marocains:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("Le tajine est un plat marocain")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>6. Exemple pratique - Gestion d'un circuit touristique</h3>
+            <div class="code-block">
+                def gerer_circuit_touristique():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;# Initialisation du circuit<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;circuit = {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"villes": ["Marrakech", "Essaouira", "Agadir"],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"durees_sejour": [3, 2, 2],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"hotels": ["Riad Marrakech", "Dar Essaouira", "Resort Agadir"],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"activites": [<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;["Médina", "Jardin Majorelle", "Jemaa el-Fna"],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;["Port", "Médina", "Plage"],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;["Plage", "Souk", "Kasbah"]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;# Affichage du circuit<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("\n=== Circuit Touristique au Maroc ===")<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;for i in range(len(circuit["villes"])):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ville = circuit["villes"][i]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duree = circuit["durees_sejour"][i]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hotel = circuit["hotels"][i]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;activites = circuit["activites"][i]<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"\nÉtape {i+1}: {ville}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Durée: {duree} jours")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Hébergement: {hotel}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Activités:")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for j, activite in enumerate(activites, 1):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"  {j}. {activite}")<br>
+                <br>
+                # Test du circuit<br>
+                gerer_circuit_touristique()
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>7. Notes techniques importantes</h3>
+            <ul>
+                <li><strong>Caractéristiques des listes :</strong>
+                    <ul>
+                        <li>Ordonnées (ordre préservé)</li>
+                        <li>Mutables (modifiables)</li>
+                        <li>Peuvent contenir des doublons</li>
+                        <li>Peuvent contenir différents types</li>
+                    </ul>
+                </li>
+                <li><strong>Indexation :</strong>
+                    <ul>
+                        <li>Commence à 0</li>
+                        <li>Index négatifs acceptés</li>
+                        <li>Erreur IndexError si hors limites</li>
+                    </ul>
+                </li>
+                <li><strong>Slicing :</strong>
+                    <ul>
+                        <li>liste[début:fin:pas]</li>
+                        <li>début inclus</li>
+                        <li>fin exclue</li>
+                        <li>pas optionnel</li>
+                    </ul>
+                </li>
+                <li><strong>Bonnes pratiques :</strong>
+                    <ul>
+                        <li>Utiliser des noms descriptifs</li>
+                        <li>Garder les listes homogènes si possible</li>
+                        <li>Commenter les opérations complexes</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section class="exercises">
+            <h3>8. Exercices pratiques</h3>
+            <ol>
+                <li><strong>Manipulation de base :</strong>
+                    <ul>
+                        <li>Créez une liste de monuments marocains</li>
+                        <li>Modifiez certains éléments</li>
+                        <li>Extrayez différentes parties de la liste</li>
+                    </ul>
+                </li>
+                <li><strong>Gestion d'itinéraire :</strong>
+                    <ul>
+                        <li>Créez un programme de planification d'itinéraire</li>
+                        <li>Permettez l'ajout et la suppression d'étapes</li>
+                        <li>Utilisez le slicing pour modifier des parties</li>
+                    </ul>
+                </li>
+                <li><strong>Carnet de voyage :</strong>
+                    <ul>
+                        <li>Créez un carnet avec différentes informations</li>
+                        <li>Combinez plusieurs listes</li>
+                        <li>Utilisez différentes opérations sur les listes</li>
+                    </ul>
+                </li>
+                <li><strong>Projet : Guide touristique :</strong>
+                    <ul>
+                        <li>Créez un guide complet avec plusieurs catégories</li>
+                        <li>Implémentez différentes opérations de gestion</li>
+                        <li>Utilisez toutes les fonctionnalités vues</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

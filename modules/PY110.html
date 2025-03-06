@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY110 - La boucle while et ses cas d'utilisation | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY110 - La boucle while et ses cas d'utilisation</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY110</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY109.html" class="prev">← Précédent: PY109</a>
+                <a href="PY111.html" class="next">Suivant: PY111 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>La boucle while et ses cas d'utilisation</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre le fonctionnement de la boucle while</li>
+                <li>Maîtriser les conditions d'arrêt</li>
+                <li>Éviter les boucles infinies</li>
+                <li>Utiliser while dans des cas pratiques</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Boucle while simple</h3>
+            <p>La boucle while permet de répéter des instructions tant qu'une condition est vraie. Voici un exemple avec un compte à rebours :</p>
+
+            <div class="code-block">
+                # Compte à rebours avant le départ d'un train<br>
+                temps_restant = 5<br>
+                <br>
+                while temps_restant > 0:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Départ dans {temps_restant} minutes...")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;temps_restant -= 1<br>
+                print("Le train part maintenant!")
+            </div>
+
+            <p>Résultat après exécution :</p>
+            <div class="code-interactive">
+                <span class="output">Départ dans 5 minutes...</span><br>
+                <span class="output">Départ dans 4 minutes...</span><br>
+                <span class="output">Départ dans 3 minutes...</span><br>
+                <span class="output">Départ dans 2 minutes...</span><br>
+                <span class="output">Départ dans 1 minutes...</span><br>
+                <span class="output">Le train part maintenant!</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Boucle avec condition complexe</h3>
+            <p>Une boucle while peut utiliser des conditions plus élaborées :</p>
+
+            <div class="code-block">
+                solde = 1000<br>
+                prix_souvenir = 200<br>
+                <br>
+                while solde >= prix_souvenir and prix_souvenir > 0:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Achat d'un souvenir. Solde restant : {solde} DH")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;solde -= prix_souvenir
+            </div>
+
+            <p>Résultat après exécution :</p>
+            <div class="code-interactive">
+                <span class="output">Achat d'un souvenir. Solde restant : 1000 DH</span><br>
+                <span class="output">Achat d'un souvenir. Solde restant : 800 DH</span><br>
+                <span class="output">Achat d'un souvenir. Solde restant : 600 DH</span><br>
+                <span class="output">Achat d'un souvenir. Solde restant : 400 DH</span><br>
+                <span class="output">Achat d'un souvenir. Solde restant : 200 DH</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Boucle avec entrée utilisateur</h3>
+            <p>Les boucles while sont idéales pour gérer les entrées utilisateur :</p>
+
+            <div class="code-block">
+                ville_a_deviner = "Fès"<br>
+                tentatives = 0<br>
+                max_tentatives = 3<br>
+                <br>
+                while tentatives < max_tentatives:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;reponse = input("Quelle est la ville la plus ancienne du Maroc ? ").strip().title()<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;tentatives += 1<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if reponse == ville_a_deviner:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Bravo! Vous avez trouvé en {tentatives} essais!")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;else:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;essais_restants = max_tentatives - tentatives<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if essais_restants > 0:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Essayez encore! Il vous reste {essais_restants} essais")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Désolé, la réponse était {ville_a_deviner}")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Utilisation de while avec des listes</h3>
+            <p>On peut parcourir des collections avec while :</p>
+
+            <div class="code-block">
+                destinations = ["Marrakech", "Fès", "Meknès", "Rabat", "Tanger"]<br>
+                index = 0<br>
+                <br>
+                while index < len(destinations):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Étape {index + 1} : {destinations[index]}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;index += 1
+            </div>
+
+            <p>Résultat après exécution :</p>
+            <div class="code-interactive">
+                <span class="output">Étape 1 : Marrakech</span><br>
+                <span class="output">Étape 2 : Fès</span><br>
+                <span class="output">Étape 3 : Meknès</span><br>
+                <span class="output">Étape 4 : Rabat</span><br>
+                <span class="output">Étape 5 : Tanger</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>5. Exemple pratique - Simulation d'un guichet automatique</h3>
+            <p>Voici un exemple plus complet d'utilisation de while pour simuler un guichet automatique :</p>
+
+            <div class="code-block">
+                def simuler_guichet():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;solde = 1000<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;tentatives_max = 3<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;tentatives = 0<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;while tentatives < tentatives_max:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("\n=== Guichet Automatique ===")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Solde actuel : {solde} DH")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("1. Retrait")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("2. Dépôt")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("3. Quitter")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choix = input("Votre choix (1-3) : ")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if choix == "1":<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;montant = float(input("Montant à retirer : "))<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if montant <= solde and montant > 0:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;solde -= montant<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Retrait effectué. Nouveau solde : {solde} DH")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Montant invalide ou solde insuffisant")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif choix == "2":<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;montant = float(input("Montant à déposer : "))<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if montant > 0:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;solde += montant<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Dépôt effectué. Nouveau solde : {solde} DH")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Montant invalide")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif choix == "3":<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Merci d'avoir utilisé nos services")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Choix invalide")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tentatives += 1<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if tentatives < tentatives_max:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Il vous reste {tentatives_max - tentatives} essais")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if tentatives >= tentatives_max:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Nombre maximum de tentatives atteint. Au revoir!")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>6. Notes techniques importantes</h3>
+            <ul>
+                <li>
+                    <strong>Structure de base :</strong>
+                    <div class="code-block">
+                        while condition:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;# code à répéter
+                    </div>
+                </li>
+                <li>
+                    <strong>Éléments clés :</strong>
+                    <ul>
+                        <li>Condition d'arrêt claire</li>
+                        <li>Modification de la condition dans la boucle</li>
+                        <li><code>break</code> pour sortie anticipée</li>
+                        <li><code>continue</code> pour passer à l'itération suivante</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Pièges à éviter :</strong>
+                    <ul>
+                        <li>Boucles infinies (condition toujours vraie)</li>
+                        <li>Conditions qui ne changent jamais</li>
+                        <li>Oubli de l'incrémentation/décrémentation de variables</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section class="exercises">
+            <h3>7. Exercices pratiques</h3>
+            <ol>
+                <li>
+                    <strong>Menu interactif :</strong>
+                    <ul>
+                        <li>Créez un menu pour un restaurant marocain</li>
+                        <li>Utilisez while pour permettre plusieurs commandes</li>
+                        <li>Calculez le total à payer</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Jeu de devinettes :</strong>
+                    <ul>
+                        <li>Améliorez l'exemple de devinette de ville</li>
+                        <li>Ajoutez des indices après chaque tentative</li>
+                        <li>Gérez un score basé sur le nombre d'essais</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Simulation :</strong>
+                    <ul>
+                        <li>Créez une simulation de voyage en bus</li>
+                        <li>Gérez les arrêts et montées/descentes de passagers</li>
+                        <li>Utilisez while pour contrôler le déroulement</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Programme avancé :</strong>
+                    <ul>
+                        <li>Développez un système de réservation d'hôtel</li>
+                        <li>Gérez la disponibilité des chambres</li>
+                        <li>Permettez des modifications de réservation</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

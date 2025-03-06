@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY126 - Manipulation de fichiers | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY126 - Manipulation de fichiers</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY126</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY125.html" class="prev">← Précédent: PY125</a>
+                <a href="PY127.html" class="next">Suivant: PY127 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Introduction à la manipulation de fichiers</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre les opérations de base sur les fichiers</li>
+                <li>Maîtriser les différents modes d'ouverture</li>
+                <li>Gérer les ressources fichier correctement</li>
+                <li>Manipuler différents types de fichiers</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Lecture de fichiers</h3>
+            <p>Python permet de lire des fichiers texte de manière simple. Voici un exemple de lecture d'un fichier de clients :</p>
+            <div class="code-block">
+                def lire_fichier_clients(nom_fichier):<br>
+                &nbsp;&nbsp;try:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;with open(nom_fichier, 'r', encoding='utf-8') as fichier:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contenu = fichier.read()<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return contenu<br>
+                &nbsp;&nbsp;except FileNotFoundError:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Fichier {nom_fichier} non trouvé")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return None<br>
+                &nbsp;&nbsp;except Exception as e:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Erreur lors de la lecture: {e}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return None
+            </div>
+            <p>Cette fonction lit le contenu d'un fichier texte et gère les erreurs potentielles.</p>
+        </section>
+
+        <section class="section">
+            <h3>2. Écriture de fichiers</h3>
+            <p>Pour écrire dans un fichier, vous pouvez utiliser le mode <code>'a'</code> (ajout) ou <code>'w'</code> (écriture). Voici un exemple d'enregistrement d'une réservation :</p>
+            <div class="code-block">
+                def enregistrer_reservation(nom_fichier, reservation):<br>
+                &nbsp;&nbsp;try:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;with open(nom_fichier, 'a', encoding='utf-8') as fichier:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ligne = f"{reservation['client']},{reservation['chambre']},{reservation['date']}\n"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fichier.write(ligne)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return True<br>
+                &nbsp;&nbsp;except Exception as e:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Erreur lors de l'enregistrement: {e}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return False
+            </div>
+            <p>Cette fonction ajoute une nouvelle réservation à un fichier texte.</p>
+        </section>
+
+        <section class="section">
+            <h3>3. Gestion de fichiers CSV</h3>
+            <p>Les fichiers CSV sont couramment utilisés pour stocker des données tabulaires. Voici un exemple de lecture et d'écriture de fichiers CSV :</p>
+            <div class="code-block">
+                import csv<br>
+                <br>
+                def lire_fichier_csv(nom_fichier):<br>
+                &nbsp;&nbsp;donnees = []<br>
+                &nbsp;&nbsp;try:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;with open(nom_fichier, 'r', encoding='utf-8') as fichier:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lecteur = csv.DictReader(fichier)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for ligne in lecteur:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;donnees.append(ligne)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return donnees<br>
+                &nbsp;&nbsp;except FileNotFoundError:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Fichier CSV non trouvé: {nom_fichier}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return []<br>
+                &nbsp;&nbsp;except Exception as e:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Erreur lors de la lecture du CSV: {e}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return []<br>
+                <br>
+                def ecrire_fichier_csv(nom_fichier, donnees):<br>
+                &nbsp;&nbsp;try:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;with open(nom_fichier, 'w', encoding='utf-8', newline='') as fichier:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if not donnees:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return False<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;champs = donnees[0].keys()<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writer = csv.DictWriter(fichier, fieldnames=champs)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writer.writeheader()<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writer.writerows(donnees)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return True<br>
+                &nbsp;&nbsp;except Exception as e:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Erreur lors de l'écriture du CSV: {e}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return False
+            </div>
+            <p>Ces fonctions permettent de lire et d'écrire des fichiers CSV en utilisant le module <code>csv</code>.</p>
+        </section>
+
+        <section class="section">
+            <h3>4. Exemple pratique - Système de gestion de fichiers hôteliers</h3>
+            <p>Voici un exemple de classe pour gérer les fichiers d'un hôtel :</p>
+            <div class="code-block">
+                class GestionFichiersHotel:<br>
+                &nbsp;&nbsp;def __init__(self):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;self.fichier_clients = "clients.txt"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;self.fichier_reservations = "reservations.csv"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;self.fichier_rapport = "rapport.txt"<br>
+                <br>
+                &nbsp;&nbsp;def ajouter_client(self, client):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;try:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with open(self.fichier_clients, 'a', encoding='utf-8') as f:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ligne = f"{client['nom']},{client['tel']},{client['email']}\n"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(ligne)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return True<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;except Exception as e:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Erreur d'ajout de client: {e}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return False<br>
+                <br>
+                &nbsp;&nbsp;def enregistrer_reservation(self, reservation):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;try:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with open(self.fichier_reservations, 'a', newline='', encoding='utf-8') as f:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writer = csv.writer(f)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writer.writerow([<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reservation['client'],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reservation['chambre'],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reservation['date_arrivee'],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reservation['date_depart'],<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reservation['prix']<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;])<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return True<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;except Exception as e:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Erreur d'enregistrement de réservation: {e}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return False<br>
+                <br>
+                &nbsp;&nbsp;def generer_rapport(self, date):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;try:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reservations = self.lire_reservations_date(date)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total = sum(float(r['prix']) for r in reservations)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with open(self.fichier_rapport, 'w', encoding='utf-8') as f:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(f"Rapport du {date}\n")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write("-" * 40 + "\n")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(f"Nombre de réservations: {len(reservations)}\n")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(f"Chiffre d'affaires: {total} DH\n\n")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write("Détail des réservations:\n")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for r in reservations:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(f"- Client: {r['client']}, ")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(f"Chambre: {r['chambre']}, ")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(f"Prix: {r['prix']} DH\n")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return True<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;except Exception as e:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Erreur de génération du rapport: {e}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return False
+            </div>
+            <p>Cette classe permet de gérer les clients, les réservations et de générer des rapports.</p>
+        </section>
+
+        <section class="exercises">
+            <h3>5. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+            <ol>
+                <li>
+                    <strong>Gestionnaire de logs :</strong>
+                    <ul>
+                        <li>Créez un système de journalisation</li>
+                        <li>Enregistrez différents types d'événements</li>
+                        <li>Implémentez une rotation des fichiers</li>
+                        <li>Ajoutez des niveaux de log</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Exportateur de données :</strong>
+                    <ul>
+                        <li>Développez un système d'export multi-format</li>
+                        <li>Gérez CSV, JSON et texte</li>
+                        <li>Ajoutez des options de formatage</li>
+                        <li>Implémentez des filtres d'export</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Système de sauvegarde :</strong>
+                    <ul>
+                        <li>Créez un système de backup automatique</li>
+                        <li>Gérez différentes versions</li>
+                        <li>Implémentez la compression</li>
+                        <li>Ajoutez des vérifications d'intégrité</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet : Système de fichiers complet :</strong>
+                    <ul>
+                        <li>Développez un gestionnaire de documents</li>
+                        <li>Implémentez différents formats</li>
+                        <li>Gérez les permissions</li>
+                        <li>Créez un système de recherche</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

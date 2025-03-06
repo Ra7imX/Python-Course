@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY114 - Méthodes principales des listes | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY114 - Méthodes principales des listes</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY114</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY113.html" class="prev">← Précédent: PY113</a>
+                <a href="PY115.html" class="next">Suivant: PY115 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Méthodes principales des listes</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Maîtriser les principales méthodes des listes</li>
+                <li>Comprendre la différence entre les méthodes</li>
+                <li>Apprendre à modifier efficacement les listes</li>
+                <li>Appliquer les méthodes dans des cas pratiques</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Méthodes d'ajout</h3>
+            <p><strong>append()</strong> - Ajouter un élément à la fin :</p>
+            <div class="code-block">
+                villes = ["Casablanca", "Rabat"]<br>
+                villes.append("Fès")<br>
+                print(f"Après append : {villes}")
+            </div>
+            <p><strong>insert()</strong> - Insérer à une position spécifique :</p>
+            <div class="code-block">
+                villes.insert(1, "Tanger")  # Insérer à l'index 1<br>
+                print(f"Après insert : {villes}")
+            </div>
+            <p><strong>extend()</strong> - Ajouter plusieurs éléments :</p>
+            <div class="code-block">
+                autres_villes = ["Meknès", "Oujda"]<br>
+                villes.extend(autres_villes)<br>
+                print(f"Après extend : {villes}")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Méthodes de suppression</h3>
+            <p><strong>remove()</strong> - Supprimer par valeur :</p>
+            <div class="code-block">
+                plats = ["Tajine", "Couscous", "Pastilla", "Tajine"]<br>
+                plats.remove("Tajine")  # Supprime la première occurrence<br>
+                print(f"Après remove : {plats}")
+            </div>
+            <p><strong>pop()</strong> - Supprimer par index et récupérer :</p>
+            <div class="code-block">
+                dernier_plat = plats.pop()  # Supprime et retourne le dernier élément<br>
+                plat_specific = plats.pop(0)  # Supprime et retourne l'élément à l'index 0<br>
+                print(f"Éléments supprimés : {dernier_plat}, {plat_specific}")
+            </div>
+            <p><strong>clear()</strong> - Vider la liste :</p>
+            <div class="code-block">
+                plats.clear()<br>
+                print(f"Après clear : {plats}")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Méthodes de recherche et tri</h3>
+            <p><strong>index()</strong> - Trouver la position :</p>
+            <div class="code-block">
+                destinations = ["Marrakech", "Agadir", "Fès", "Tanger", "Marrakech"]<br>
+                position = destinations.index("Marrakech")  # Première occurrence<br>
+                print(f"Position de Marrakech : {position}")
+            </div>
+            <p><strong>count()</strong> - Compter les occurrences :</p>
+            <div class="code-block">
+                occurrences = destinations.count("Marrakech")<br>
+                print(f"Nombre de Marrakech : {occurrences}")
+            </div>
+            <p><strong>sort()</strong> - Trier la liste :</p>
+            <div class="code-block">
+                destinations.sort()<br>
+                print(f"Liste triée : {destinations}")
+            </div>
+            <p><strong>reverse()</strong> - Inverser l'ordre :</p>
+            <div class="code-block">
+                destinations.reverse()<br>
+                print(f"Liste inversée : {destinations}")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Exemple pratique - Gestion d'un restaurant</h3>
+            <div class="code-block">
+                class RestaurantMarocain:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.menu = []<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.commandes = []<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;def ajouter_plat(self, plat, prix):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"""Ajoute un plat au menu"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.menu.append({"plat": plat, "prix": prix})<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Plat ajouté : {plat} à {prix} DH")<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;def supprimer_plat(self, plat):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"""Supprime un plat du menu"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for item in self.menu:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if item["plat"] == plat:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.menu.remove(item)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Plat supprimé : {plat}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Plat non trouvé : {plat}")<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;def prendre_commande(self, table, plats):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"""Enregistre une nouvelle commande"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;commande = {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"table": table,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"plats": plats.copy(),<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"statut": "en attente"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.commandes.append(commande)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Commande enregistrée pour la table {table}")<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;def afficher_menu(self):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"""Affiche le menu complet"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("\n=== Menu du Restaurant ===")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for item in sorted(self.menu, key=lambda x: x["prix"]):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"{item['plat']} : {item['prix']} DH")<br>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;def afficher_commandes(self):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"""Affiche toutes les commandes"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("\n=== Commandes en cours ===")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for commande in self.commandes:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Table {commande['table']} - {commande['statut']}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for plat in commande["plats"]:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"  - {plat}")<br>
+                <br>
+                # Test du système de restaurant<br>
+                restaurant = RestaurantMarocain()<br>
+                <br>
+                # Ajout de plats<br>
+                restaurant.ajouter_plat("Tajine Poulet", 80)<br>
+                restaurant.ajouter_plat("Couscous Royal", 90)<br>
+                restaurant.ajouter_plat("Pastilla", 70)<br>
+                restaurant.ajouter_plat("Harira", 30)<br>
+                <br>
+                # Affichage du menu<br>
+                restaurant.afficher_menu()<br>
+                <br>
+                # Prise de commandes<br>
+                restaurant.prendre_commande(1, ["Tajine Poulet", "Harira"])<br>
+                restaurant.prendre_commande(2, ["Couscous Royal", "Pastilla"])<br>
+                <br>
+                # Affichage des commandes<br>
+                restaurant.afficher_commandes()<br>
+                <br>
+                # Suppression d'un plat<br>
+                restaurant.supprimer_plat("Harira")<br>
+                <br>
+                # Réaffichage du menu<br>
+                restaurant.afficher_menu()
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h3>5. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+            <ol>
+                <li>Gestion d'un hôtel : Créez une liste de chambres, implémentez réservation/libération, gérez une liste d'attente.</li>
+                <li>Planning touristique : Créez un programme de gestion d'activités, permettez ajout/suppression/modification, implémentez un système de priorité.</li>
+                <li>Gestion de stock : Créez un système pour une boutique de souvenirs, gérez l'inventaire avec différentes méthodes, implémentez des alertes de stock.</li>
+                <li>Projet : Application de voyage : Créez une application complète, utilisez toutes les méthodes de liste, gérez plusieurs aspects (réservations, activités, etc.).</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

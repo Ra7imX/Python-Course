@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY125 - Les exceptions courantes et leur gestion | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY125 - Les exceptions courantes et leur gestion</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY125</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY124.html" class="prev">← Précédent: PY124</a>
+                <a href="PY126.html" class="next">Suivant: PY126 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Introduction aux exceptions en Python</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Reconnaître les exceptions courantes</li>
+                <li>Créer des exceptions personnalisées</li>
+                <li>Implémenter une gestion d'erreurs avancée</li>
+                <li>Utiliser les exceptions de manière appropriée</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Exceptions courantes</h3>
+            <p>Les exceptions courantes en Python incluent :</p>
+            <ul>
+                <li><strong>TypeError</strong> : Erreur de type</li>
+                <li><strong>ValueError</strong> : Valeur invalide</li>
+                <li><strong>KeyError</strong> : Clé non trouvée</li>
+                <li><strong>IndexError</strong> : Index invalide</li>
+            </ul>
+            <div class="code-block">
+                def demonstration_exceptions():
+                    # TypeError
+                    try:
+                        prix = "800" + 50
+                    except TypeError as e:
+                        print(f"TypeError: {e}")
+                    
+                    # ValueError
+                    try:
+                        prix = int("huit cents")
+                    except ValueError as e:
+                        print(f"ValueError: {e}")
+                    
+                    # KeyError
+                    hotels = {"Rabat": "Hôtel Médina"}
+                    try:
+                        hotel = hotels["Casablanca"]
+                    except KeyError as e:
+                        print(f"KeyError: {e}")
+                    
+                    # IndexError
+                    villes = ["Fès", "Meknès"]
+                    try:
+                        ville = villes[5]
+                    except IndexError as e:
+                        print(f"IndexError: {e}")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Exceptions personnalisées</h3>
+            <p>Création d'exceptions personnalisées pour la gestion des réservations :</p>
+            <div class="code-block">
+                class ReservationError(Exception):
+                    pass
+
+                class ChambreIndisponibleError(ReservationError):
+                    def __init__(self, numero_chambre, date):
+                        self.numero_chambre = numero_chambre
+                        self.date = date
+                        self.message = f"Chambre {numero_chambre} non disponible pour la date {date}"
+                        super().__init__(self.message)
+
+                class PrixInvalideError(ReservationError):
+                    def __init__(self, prix):
+                        self.prix = prix
+                        self.message = f"Prix invalide: {prix} DH"
+                        super().__init__(self.message)
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Utilisation des exceptions personnalisées</h3>
+            <p>Implémentation d'une classe pour gérer les réservations avec des exceptions personnalisées :</p>
+            <div class="code-block">
+                class HotelRiad:
+                    def __init__(self):
+                        self.chambres = {
+                            "101": {"prix": 800, "disponible": True},
+                            "102": {"prix": 1200, "disponible": False}
+                        }
+                    
+                    def reserver_chambre(self, numero, date):
+                        if numero not in self.chambres:
+                            raise KeyError(f"Chambre {numero} inexistante")
+                        
+                        chambre = self.chambres[numero]
+                        if not chambre["disponible"]:
+                            raise ChambreIndisponibleError(numero, date)
+                        
+                        if chambre["prix"] <= 0:
+                            raise PrixInvalideError(chambre["prix"])
+                        
+                        return {"numero": numero, "prix": chambre["prix"], "date": date}
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Système de réservation complet</h3>
+            <p>Exemple pratique d'un système de réservation avec gestion d'erreurs avancée :</p>
+            <div class="code-block">
+                class SystemeReservation:
+                    def __init__(self):
+                        self.hotel = HotelRiad()
+                        self.reservations = []
+                    
+                    def effectuer_reservation(self, client, numero_chambre, date):
+                        try:
+                            if not client.strip():
+                                raise ValueError("Nom du client requis")
+                            
+                            if not self._valider_date(date):
+                                raise ValueError("Format de date invalide")
+                            
+                            reservation = self.hotel.reserver_chambre(numero_chambre, date)
+                            reservation["client"] = client
+                            self.reservations.append(reservation)
+                            
+                            return f"Réservation confirmée pour {client}"
+                        
+                        except ChambreIndisponibleError as e:
+                            return f"Erreur de disponibilité: {e}"
+                        
+                        except PrixInvalideError as e:
+                            return f"Erreur de prix: {e}"
+                        
+                        except KeyError as e:
+                            return f"Chambre non trouvée: {e}"
+                        
+                        except ValueError as e:
+                            return f"Erreur de validation: {e}"
+                        
+                        except Exception as e:
+                            return f"Erreur inattendue: {str(e)}"
+                    
+                    def _valider_date(self, date):
+                        return True  # À implémenter avec une vraie validation
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h3>5. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+            <ol>
+                <li>Gestion des réservations : Créez des exceptions pour différents cas d'erreur.</li>
+                <li>Système de paiement : Développez des exceptions pour les erreurs de paiement.</li>
+                <li>Validation de données : Créez des exceptions pour la validation des entrées.</li>
+                <li>Projet : Application complète : Développez un système de gestion hôtelière.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

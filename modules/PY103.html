@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY103 - L'indentation en Python | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY103 - L'indentation en Python</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html" target="_blank">Accueil</a>
+                <span>></span>
+                <span>PY103</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="PY102.html" class="prev">← Précédent: PY102</a>
+                <a href="PY104.html" class="next">Suivant: PY104 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>L'indentation en Python - Règles et importance</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre le rôle crucial de l'indentation en Python</li>
+                <li>Maîtriser les règles d'indentation</li>
+                <li>Éviter les erreurs courantes liées à l'indentation</li>
+                <li>Apprendre à structurer son code proprement</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Principes de base de l'indentation</h3>
+            <p>L'indentation en Python est un élément fondamental du langage :</p>
+
+            <ul>
+                <li>Définit la structure du code</li>
+                <li>Détermine les blocs d'instructions</li>
+                <li>Utilise généralement 4 espaces (standard PEP 8)</li>
+                <li><strong>Est OBLIGATOIRE</strong> (contrairement à d'autres langages)</li>
+            </ul>
+
+            <p>Contrairement à d'autres langages qui utilisent des accolades {} ou des mots-clés comme "begin/end", Python utilise l'indentation pour définir les blocs de code. C'est une particularité qui rend le code Python naturellement lisible.</p>
+        </section>
+
+        <section class="section">
+            <h3>2. Exemples simples d'indentation</h3>
+            <p>Exemple avec une structure conditionnelle :</p>
+            
+            <div class="code-block">
+ville = "Marrakech"<br>
+if ville == "Marrakech":<br>
+    print("Bienvenue dans la ville rouge!")    # Indenté avec 4 espaces<br>
+    print("Visitez la place Jemaa el-Fna")     # Même niveau d'indentation<br>
+print("Bon séjour au Maroc!")                  # Retour au niveau 0
+            </div>
+
+            <p>Points importants :</p>
+            <ul>
+                <li>Le bloc conditionnel commence après les deux-points (:)</li>
+                <li>Toutes les lignes du bloc doivent avoir la même indentation</li>
+                <li>Le retour à un niveau d'indentation inférieur indique la fin du bloc</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>3. Niveaux multiples d'indentation</h3>
+            <p>Les structures imbriquées nécessitent plusieurs niveaux d'indentation :</p>
+            <div class="code-block">
+def presenter_ville(ville, population):<br>
+    # Premier niveau d'indentation<br>
+    print(f"Information sur {ville}:")<br>
+    if population > 1000000:<br>
+        # Deuxième niveau d'indentation<br>
+        print(f"{ville} est une grande ville")<br>
+        if ville == "Casablanca":<br>
+            # Troisième niveau d'indentation<br>
+            print("C'est la plus grande ville du Maroc")<br>
+    else:<br>
+        # Retour au deuxième niveau<br>
+        print(f"{ville} est une ville moyenne ou petite")<br>
+<br>
+# Utilisation de la fonction<br>
+presenter_ville("Casablanca", 3400000)<br>
+presenter_ville("Ifrane", 35000)
+            </div>
+
+            <p>Observations :</p>
+            <ul>
+                <li>Chaque structure imbriquée ajoute un niveau d'indentation</li>
+                <li>L'indentation permet de visualiser clairement la structure du code</li>
+                <li>Les blocs alternatifs (comme else) maintiennent le même niveau que leur condition associée</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>4. Erreurs courantes d'indentation</h3>
+            <p>Voici des exemples d'erreurs à éviter absolument :</p>
+
+            <p><strong>1. Indentation incohérente :</strong></p>
+            <div class="code-block">
+if ville == "Fès":<br>
+    print("Ville historique")<br>
+   print("Médina classée")  # ERREUR: Indentation différente
+            </div>
+
+            <p><strong>2. Oubli d'indentation :</strong></p>
+            <div class="code-block">
+if ville == "Tanger":<br>
+print("Ville du détroit")  # ERREUR: Pas d'indentation
+            </div>
+
+            <p><strong>3. Mélange espaces et tabulations :</strong></p>
+            <div class="code-block">
+if ville == "Agadir":<br>
+    print("Ville balnéaire")  # Espaces<br>
+	print("Beau climat")      # Tabulation (à éviter)
+            </div>
+
+            <p>Conséquences des erreurs d'indentation :</p>
+            <ul>
+                <li>Erreurs de syntaxe (IndentationError, TabError)</li>
+                <li>Comportement inattendu du programme</li>
+                <li>Difficultés de débogage</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>5. Cas pratiques d'indentation</h3>
+            <p>Exemple complet avec plusieurs niveaux d'indentation :</p>
+            <div class="code-block">
+def gerer_commande_restaurant():<br>
+    # Menu du restaurant<br>
+    plats = {<br>
+        "tajine": 70,<br>
+        "couscous": 80,<br>
+        "pastilla": 90<br>
+    }<br>
+    <br>
+    # Demande au client<br>
+    commande = input("Que souhaitez-vous commander ? ")<br>
+    if commande in plats:<br>
+        print(f"Prix du {commande}: {plats[commande]} DH")<br>
+        quantite = int(input("Combien en voulez-vous ? "))<br>
+        if quantite > 0:<br>
+            total = plats[commande] * quantite<br>
+            if total > 200:<br>
+                print("Vous avez droit à un thé gratuit!")<br>
+            print(f"Total à payer: {total} DH")<br>
+        else:<br>
+            print("Quantité invalide")<br>
+    else:<br>
+        print("Désolé, ce plat n'est pas au menu")
+            </div>
+
+            <p>Remarquez comment l'indentation :</p>
+            <ul>
+                <li>Indique clairement la structure logique du programme</li>
+                <li>Permet de suivre le flux d'exécution</li>
+                <li>Facilite la compréhension des conditions imbriquées</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>6. Règles et bonnes pratiques</h3>
+            <p><strong>Règles d'indentation :</strong></p>
+            <ul>
+                <li>Toujours utiliser le même nombre d'espaces</li>
+                <li>4 espaces est le standard Python (PEP 8)</li>
+                <li>Être cohérent dans tout le projet</li>
+                <li>Ne pas mélanger espaces et tabulations</li>
+            </ul>
+
+            <p><strong>Quand indenter :</strong></p>
+            <ul>
+                <li>Après les ':' dans if, for, while, def, class</li>
+                <li>Pour tous les blocs de code</li>
+                <li>Pour les lignes continuées</li>
+                <li>Dans les listes/dictionnaires multilignes</li>
+            </ul>
+
+            <p><strong>Outils et astuces :</strong></p>
+            <ul>
+                <li>Utiliser un éditeur qui montre les espaces</li>
+                <li>Configurer l'auto-indentation</li>
+                <li>Utiliser des outils de formatage (comme autopep8)</li>
+                <li>Vérifier l'indentation avant d'exécuter</li>
+            </ul>
+        </section>
+
+        <section class="exercises">
+            <h3>7. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+
+            <ol>
+                <li>
+                    <strong>Structure simple :</strong>
+                    <ul>
+                        <li>Écrivez un programme qui vérifie l'âge pour un prix d'entrée</li>
+                        <li>Utilisez plusieurs conditions imbriquées</li>
+                        <li>Assurez-vous que l'indentation est correcte</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Correction d'erreurs :</strong>
+                    <ul>
+                        <li>Corrigez le code suivant :</li>
+                        <div class="code-block">
+def calculer_prix():<br>
+prix = 100<br>
+    if prix > 50:<br>
+print("Cher")<br>
+   else:<br>
+ print("Abordable")
+                        </div>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Structures imbriquées :</strong>
+                    <ul>
+                        <li>Créez un programme de réservation d'hôtel</li>
+                        <li>Utilisez au moins 3 niveaux d'indentation</li>
+                        <li>Gérez différents cas (disponibilité, prix, options)</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Pratique avancée :</strong>
+                    <ul>
+                        <li>Écrivez un programme de gestion de match de foot</li>
+                        <li>Incluez plusieurs niveaux de décision</li>
+                        <li>Utilisez des boucles et conditions imbriquées</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Défi d'indentation :</strong>
+                    <ul>
+                        <li>Créez une calculatrice de voyage au Maroc</li>
+                        <li>Gérez différentes villes, moyens de transport</li>
+                        <li>Utilisez des structures profondément imbriquées</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

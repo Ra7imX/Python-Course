@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY128 - Les compréhensions de liste | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY128 - Les compréhensions de liste</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY128</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY127.html" class="prev">← Précédent: PY127</a>
+                <a href="PY129.html" class="next">Suivant: PY129 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Introduction aux compréhensions de liste</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre la syntaxe des compréhensions de liste</li>
+                <li>Maîtriser les filtres et conditions</li>
+                <li>Utiliser les compréhensions de manière efficace</li>
+                <li>Comparer avec les boucles traditionnelles</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Compréhensions de liste simples</h3>
+            <p>Liste traditionnelle vs compréhension :</p>
+            <div class="code-block">
+                villes = ["Casablanca", "Rabat", "Fès", "Marrakech", "Tanger"]<br>
+                <br>
+                # Méthode traditionnelle<br>
+                villes_maj = []<br>
+                for ville in villes:<br>
+                    villes_maj.append(ville.upper())<br>
+                <br>
+                # Avec compréhension de liste<br>
+                villes_maj = [ville.upper() for ville in villes]<br>
+                print(f"Villes en majuscules: {villes_maj}")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Compréhensions avec condition</h3>
+            <p>Filtrer les prix > 1000 DH :</p>
+            <div class="code-block">
+                prix_chambres = [800, 1200, 1500, 2000, 500]<br>
+                <br>
+                # Filtrer les prix > 1000 DH<br>
+                chambres_luxe = [prix for prix in prix_chambres if prix > 1000]<br>
+                print(f"Chambres de luxe: {chambres_luxe}")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Compréhensions avec transformation et condition</h3>
+            <p>Obtenir les numéros des suites de luxe (>1800 DH) :</p>
+            <div class="code-block">
+                chambres = {<br>
+                    "101": {"type": "standard", "prix": 800},<br>
+                    "102": {"type": "suite", "prix": 1500},<br>
+                    "103": {"type": "standard", "prix": 900},<br>
+                    "104": {"type": "suite", "prix": 2000}<br>
+                }<br>
+                <br>
+                # Obtenir les numéros des suites de luxe (>1800 DH)<br>
+                suites_luxe = [num for num, info in chambres.items() <br>
+                               if info["type"] == "suite" and info["prix"] > 1800]<br>
+                print(f"Suites de luxe: {suites_luxe}")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Exemple pratique - Système de gestion hôtelière</h3>
+            <p>Exemple de gestion d'un hôtel avec des compréhensions de liste :</p>
+            <div class="code-block">
+                class HotelManager:<br>
+                    def __init__(self):<br>
+                        self.chambres = {<br>
+                            "101": {"type": "standard", "prix": 800, "vue": "ville"},<br>
+                            "102": {"type": "suite", "prix": 1500, "vue": "mer"},<br>
+                            "103": {"type": "standard", "prix": 900, "vue": "mer"},<br>
+                            "104": {"type": "suite", "prix": 2000, "vue": "mer"},<br>
+                            "201": {"type": "standard", "prix": 850, "vue": "ville"},<br>
+                            "202": {"type": "suite", "prix": 1600, "vue": "mer"}<br>
+                        }<br>
+                        <br>
+                        self.reservations = {<br>
+                            "101": {"client": "Mohammed", "nuits": 3},<br>
+                            "103": {"client": "Fatima", "nuits": 2},<br>
+                            "202": {"client": "Ahmed", "nuits": 4}<br>
+                        }<br>
+                        <br>
+                    def obtenir_chambres_disponibles(self):<br>
+                        return [num for num in self.chambres.keys() <br>
+                                if num not in self.reservations]<br>
+                        <br>
+                    def obtenir_chambres_vue_mer(self):<br>
+                        return [num for num, info in self.chambres.items() <br>
+                                if info["vue"] == "mer"]<br>
+                        <br>
+                    def calculer_revenus_journaliers(self):<br>
+                        return [<br>
+                            self.chambres[num]["prix"] * res["nuits"]<br>
+                            for num, res in self.reservations.items()<br>
+                        ]<br>
+                        <br>
+                    def obtenir_suites_disponibles_vue_mer(self):<br>
+                        return [<br>
+                            num for num, info in self.chambres.items()<br>
+                            if info["type"] == "suite"<br>
+                            and info["vue"] == "mer"<br>
+                            and num not in self.reservations<br>
+                        ]<br>
+                        <br>
+                    def obtenir_info_reservations(self):<br>
+                        return [<br>
+                            {<br>
+                                "chambre": num,<br>
+                                "client": res["client"],<br>
+                                "prix_total": self.chambres[num]["prix"] * res["nuits"]<br>
+                            }<br>
+                            for num, res in self.reservations.items()<br>
+                        ]<br>
+                        <br>
+                # Test du système<br>
+                hotel = HotelManager()<br>
+                <br>
+                print("\n=== Gestion de l'hôtel ===")<br>
+                <br>
+                # Afficher les chambres disponibles<br>
+                disponibles = hotel.obtenir_chambres_disponibles()<br>
+                print(f"Chambres disponibles: {disponibles}")<br>
+                <br>
+                # Afficher les chambres avec vue mer<br>
+                vue_mer = hotel.obtenir_chambres_vue_mer()<br>
+                print(f"Chambres vue mer: {vue_mer}")<br>
+                <br>
+                # Calculer les revenus<br>
+                revenus = sum(hotel.calculer_revenus_journaliers())<br>
+                print(f"Revenus totaux: {revenus} DH")<br>
+                <br>
+                # Afficher les suites disponibles avec vue mer<br>
+                suites_mer = hotel.obtenir_suites_disponibles_vue_mer()<br>
+                print(f"Suites disponibles vue mer: {suites_mer}")<br>
+                <br>
+                # Afficher les informations des réservations<br>
+                reservations = hotel.obtenir_info_reservations()<br>
+                print("\nRéservations en cours:")<br>
+                for res in reservations:<br>
+                    print(f"Chambre {res['chambre']}: {res['client']} - {res['prix_total']} DH")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>5. Comparaisons et performances</h3>
+            <p>Comparaison des performances entre boucles traditionnelles et compréhensions de liste :</p>
+            <div class="code-block">
+                def demonstration_performances():<br>
+                    import time<br>
+                    <br>
+                    # Données de test<br>
+                    prix = range(1, 1001)<br>
+                    <br>
+                    # Méthode traditionnelle<br>
+                    debut = time.time()<br>
+                    prix_reduits = []<br>
+                    for p in prix:<br>
+                        if p > 500:<br>
+                            prix_reduits.append(p * 0.9)<br>
+                    temps_boucle = time.time() - debut<br>
+                    <br>
+                    # Compréhension de liste<br>
+                    debut = time.time()<br>
+                    prix_reduits = [p * 0.9 for p in prix if p > 500]<br>
+                    temps_comprehension = time.time() - debut<br>
+                    <br>
+                    print(f"\nPerformances:")<br>
+                    print(f"Temps boucle: {temps_boucle:.6f} secondes")<br>
+                    print(f"Temps compréhension: {temps_comprehension:.6f} secondes")<br>
+                    <br>
+                # Test des performances<br>
+                demonstration_performances()
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h3>6. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+            <ol>
+                <li>
+                    <strong>Gestion des clients :</strong>
+                    <ul>
+                        <li>Créez une liste de clients avec leurs informations</li>
+                        <li>Filtrez les clients VIP</li>
+                        <li>Calculez les points de fidélité</li>
+                        <li>Générez des rapports clients</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Analyse des réservations :</strong>
+                    <ul>
+                        <li>Calculez les statistiques de réservation</li>
+                        <li>Identifiez les périodes populaires</li>
+                        <li>Analysez les préférences clients</li>
+                        <li>Générez des recommandations</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Gestion des tarifs :</strong>
+                    <ul>
+                        <li>Appliquez des réductions selon conditions</li>
+                        <li>Calculez les prix selon la saison</li>
+                        <li>Générez des offres spéciales</li>
+                        <li>Créez un système de prix dynamique</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet : Système analytique :</strong>
+                    <ul>
+                        <li>Développez un système d'analyse complet</li>
+                        <li>Utilisez les compréhensions pour le traitement</li>
+                        <li>Générez des rapports détaillés</li>
+                        <li>Implémentez des prévisions</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

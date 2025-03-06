@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY104 - Variables et types de données | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY104 - Variables et types de données</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY104</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="PY103.html" class="prev">← Précédent: PY103</a>
+                <a href="PY105.html" class="next">Suivant: PY105 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Variables et types de données de base en Python</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre le concept de variable</li>
+                <li>Maîtriser les types de données de base</li>
+                <li>Apprendre les règles de nommage</li>
+                <li>Pratiquer les opérations sur les variables</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Déclaration et assignation de variables</h3>
+            <p>Les variables permettent de stocker des données en mémoire :</p>
+
+            <div class="code-block">
+                # Variables simples<br>
+                nom_equipe = "Wydad"                # Type str (chaîne)<br>
+                annee_creation = 1937               # Type int (entier)<br>
+                pourcentage_victoires = 75.5        # Type float (décimal)<br>
+                est_champion = True                 # Type bool (booléen)<br>
+                dernier_match = None                # Type NoneType
+            </div>
+
+            <p>Affichage des variables et leurs types :</p>
+            <div class="code-interactive">
+                <span class="output">Équipe: Wydad (&lt;class 'str'&gt;)</span><br>
+                <span class="output">Création: 1937 (&lt;class 'int'&gt;)</span><br>
+                <span class="output">Victoires: 75.5% (&lt;class 'float'&gt;)</span><br>
+                <span class="output">Champion: True (&lt;class 'bool'&gt;)</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Types numériques</h3>
+            <p><strong>Entiers (int) :</strong></p>
+            <div class="code-block">
+                nombre_joueurs = 11<br>
+                numero_maillot = 10<br>
+                age_club = 2025 - annee_creation
+            </div>
+
+            <p><strong>Nombres à virgule (float) :</strong></p>
+            <div class="code-block">
+                taille_joueur = 1.82<br>
+                poids_joueur = 75.5<br>
+                imc = poids_joueur / (taille_joueur ** 2)
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Chaînes de caractères (str)</h3>
+            <p>Différentes façons de créer des chaînes :</p>
+            <div class="code-block">
+                ville = "Casablanca"                # Guillemets doubles<br>
+                stade = 'Mohammed V'                # Guillemets simples<br>
+                adresse = """Bd Mohammed V,         # Multiligne<br>
+                Casablanca, Maroc"""
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Booléens (bool)</h3>
+            <p>Variables booléennes et comparaisons :</p>
+            <div class="code-block">
+                est_professionnel = True<br>
+                a_gagne_champions_league = False<br>
+                peut_jouer = age_club > 10 and est_professionnel
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>5. Conversion de types</h3>
+            <p>Conversion entre différents types :</p>
+            <div class="code-block">
+                prix_ticket_str = "150"<br>
+                prix_ticket_num = int(prix_ticket_str)      # str vers int<br>
+                prix_reduit = float(prix_ticket_num) * 0.8  # int vers float<br>
+                prix_affiche = str(prix_reduit)             # float vers str
+            </div>
+            
+            <p><strong>Règles de nommage :</strong></p>
+            <ul>
+                <li>Commencer par une lettre ou underscore</li>
+                <li>Contenir lettres, chiffres, underscores</li>
+                <li>Sensible à la casse (maVariable ≠ mavariable)</li>
+                <li>Utiliser snake_case en Python (mots_separes_par_underscore)</li>
+            </ul>
+            
+            <p><strong>Types de données de base :</strong></p>
+            <ul>
+                <li>str : Chaînes de caractères (texte)</li>
+                <li>int : Nombres entiers</li>
+                <li>float : Nombres décimaux</li>
+                <li>bool : Booléens (True/False)</li>
+                <li>None : Valeur nulle</li>
+            </ul>
+            
+            <p><strong>Bonnes pratiques :</strong></p>
+            <ul>
+                <li>Noms descriptifs et significatifs</li>
+                <li>Éviter les noms trop courts ou ambigus</li>
+                <li>Commenter les variables complexes</li>
+                <li>Initialiser les variables avant utilisation</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>6. Exemples pratiques</h3>
+            <p>Gestion d'un match de football :</p>
+            <div class="code-block">
+                equipe_locale = "Raja"<br>
+                equipe_visiteur = "Wydad"<br>
+                score_local = 2<br>
+                score_visiteur = 1<br>
+                match_termine = True<br>
+                duree_match = 90.0<br>
+                <br>
+                # Calcul de statistiques<br>
+                total_buts = score_local + score_visiteur<br>
+                difference_buts = abs(score_local - score_visiteur)<br>
+                match_nul = score_local == score_visiteur<br>
+                victoire_locale = score_local > score_visiteur
+            </div>
+            
+            <p>Résultat de l'exécution :</p>
+            <div class="code-interactive">
+                <span class="output">Résultat du match Raja vs Wydad</span><br>
+                <span class="output">Score final : 2 - 1</span><br>
+                <span class="output">Total des buts : 3</span><br>
+                <span class="output">Différence de buts : 1</span><br>
+                <span class="output">Match nul : False</span><br>
+                <span class="output">Victoire locale : True</span>
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h3>7. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+
+            <ol>
+                <li>
+                    <strong>Variables simples :</strong>
+                    <ul>
+                        <li>Créez des variables pour décrire un joueur de foot</li>
+                        <li>Utilisez au moins un exemple de chaque type de base</li>
+                        <li>Affichez toutes les informations avec leur type</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Calculs et conversions :</strong>
+                    <ul>
+                        <li>Créez un programme de billetterie de stade</li>
+                        <li>Gérez différents types de tickets et réductions</li>
+                        <li>Faites des conversions entre types</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Chaînes de caractères :</strong>
+                    <ul>
+                        <li>Créez une fiche d'équipe complète</li>
+                        <li>Utilisez différentes façons de créer des chaînes</li>
+                        <li>Combinez les chaînes de différentes manières</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Variables booléennes :</strong>
+                    <ul>
+                        <li>Créez un système de vérification pour un match</li>
+                        <li>Utilisez plusieurs conditions</li>
+                        <li>Combinez les conditions avec and/or</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet mini :</strong>
+                    <ul>
+                        <li>Créez un gestionnaire de tournoi de foot</li>
+                        <li>Utilisez tous les types de variables vus</li>
+                        <li>Faites des calculs et des affichages complets</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

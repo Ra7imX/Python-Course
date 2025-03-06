@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY109 - Structures conditionnelles : if, elif, else | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY109 - Structures conditionnelles : if, elif, else</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY109</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY108.html" class="prev">← Précédent: PY108</a>
+                <a href="PY110.html" class="next">Suivant: PY110 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Structures conditionnelles : if, elif, else</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Maîtriser les structures conditionnelles</li>
+                <li>Comprendre l'imbrication des conditions</li>
+                <li>Utiliser les conditions composées</li>
+                <li>Appliquer les bonnes pratiques</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Structure if simple</h3>
+            <p>La structure conditionnelle la plus simple est le <strong>if</strong> qui exécute du code uniquement si une condition est vraie :</p>
+
+            <div class="code-block">
+                temperature = 35<br>
+                <br>
+                if temperature > 30:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("Il fait chaud aujourd'hui à Marrakech!")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("Pensez à bien vous hydrater")
+            </div>
+
+            <p>Le code indenté sous le <strong>if</strong> ne s'exécute que si la condition est vraie (True).</p>
+        </section>
+
+        <section class="section">
+            <h3>2. Structure if-else</h3>
+            <p>La structure <strong>if-else</strong> permet d'exécuter un bloc de code si la condition est vraie, et un autre bloc si elle est fausse :</p>
+
+            <div class="code-block">
+                budget = 500<br>
+                <br>
+                if budget >= 300:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("Vous pouvez réserver un bon hôtel")<br>
+                else:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("Pensez plutôt à une auberge de jeunesse")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Structure if-elif-else</h3>
+            <p>Pour gérer plusieurs conditions alternatives, on utilise la structure <strong>if-elif-else</strong> :</p>
+
+            <div class="code-block">
+                note = 15<br>
+                <br>
+                if note >= 16:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;mention = "Excellent"<br>
+                elif note >= 14:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;mention = "Très bien"<br>
+                elif note >= 12:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;mention = "Bien"<br>
+                elif note >= 10:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;mention = "Passable"<br>
+                else:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;mention = "À améliorer"<br>
+                <br>
+                print(f"Mention : {mention}")
+            </div>
+
+            <p>Python teste chaque condition dans l'ordre et exécute le premier bloc dont la condition est vraie.</p>
+        </section>
+
+        <section class="section">
+            <h3>4. Conditions imbriquées</h3>
+            <p>Il est possible d'imbriquer des structures conditionnelles les unes dans les autres :</p>
+
+            <div class="code-block">
+                saison = "été"<br>
+                temperature = 35<br>
+                <br>
+                if saison == "été":<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if temperature > 30:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Forte chaleur, restez à l'ombre")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if temperature > 40:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Canicule! Évitez de sortir")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;else:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Température normale pour l'été")<br>
+                else:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("Ce n'est pas l'été")
+            </div>
+
+            <p>L'indentation est essentielle pour définir la portée de chaque bloc conditionnel.</p>
+        </section>
+
+        <section class="section">
+            <h3>5. Conditions composées</h3>
+            <p>Les opérateurs logiques permettent de combiner plusieurs conditions :</p>
+
+            <div class="code-block">
+                prix = 200<br>
+                stock = 5<br>
+                en_promotion = True<br>
+                <br>
+                if prix < 300 and stock > 0:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("Article disponible à la vente")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if en_promotion or stock > 10:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Bonne affaire!")
+            </div>
+
+            <p>Les opérateurs <strong>and</strong>, <strong>or</strong> et <strong>not</strong> permettent de créer des conditions complexes.</p>
+        </section>
+
+        <section class="section">
+            <h3>6. Exemple pratique - Système de réservation d'un riad</h3>
+            <p>Voici un exemple complet d'utilisation des structures conditionnelles :</p>
+
+            <div class="code-block">
+                def verifier_reservation_riad(nombre_personnes, duree_sejour, budget_total):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Système de vérification pour la réservation d'un riad à Marrakech<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;# Prix par nuit selon la saison<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;prix_base = 800  # en DH<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;# Calculs préliminaires<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;cout_total = prix_base * duree_sejour<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;# Vérifications avec messages détaillés<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if nombre_personnes <= 0 or duree_sejour <= 0:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "Données invalides"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if nombre_personnes > 6:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "Désolé, ce riad ne peut accueillir plus de 6 personnes"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if duree_sejour < 2:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return "La durée minimum de séjour est de 2 nuits"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if budget_total < cout_total:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message = f"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Budget insuffisant:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Coût total: {cout_total} DH<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Votre budget: {budget_total} DH<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Différence: {cout_total - budget_total} DH<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return message<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;# Si toutes les conditions sont remplies<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return f"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Réservation possible!<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;- Coût total: {cout_total} DH<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;- Durée: {duree_sejour} nuits<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;- Personnes: {nombre_personnes}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"""<br>
+                <br>
+                # Test du système<br>
+                print("\nTest du système de réservation:")<br>
+                print(verifier_reservation_riad(4, 3, 3000))<br>
+                print(verifier_reservation_riad(2, 5, 2000))
+            </div>
+
+            <p>Cet exemple montre comment combiner plusieurs conditions pour créer un système de vérification complet.</p>
+        </section>
+
+        <section class="section">
+            <h3>7. Notes techniques importantes</h3>
+            <p>Voici quelques points importants à retenir :</p>
+
+            <ul>
+                <li>
+                    <strong>Structure des conditions :</strong>
+                    <div class="code-block">
+                        if condition:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;# code<br>
+                        elif autre_condition:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;# code<br>
+                        else:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;# code
+                    </div>
+                </li>
+                <li>
+                    <strong>Opérateurs de comparaison :</strong>
+                    <p>==, !=, <, >, <=, >=</p>
+                </li>
+                <li>
+                    <strong>Opérateurs logiques :</strong>
+                    <p>and, or, not</p>
+                </li>
+                <li>
+                    <strong>Bonnes pratiques :</strong>
+                    <ul>
+                        <li>Une seule condition par ligne</li>
+                        <li>Éviter les conditions trop complexes</li>
+                        <li>Utiliser des parenthèses pour clarifier</li>
+                        <li>Préférer les conditions positives</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section class="exercises">
+            <h3>8. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+
+            <ol>
+                <li>
+                    <strong>Système de tarification :</strong>
+                    <ul>
+                        <li>Créez un système pour un musée marocain</li>
+                        <li>Gérez différentes catégories (âge, nationalité, groupe)</li>
+                        <li>Appliquez des réductions selon les conditions</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Conseiller de voyage :</strong>
+                    <ul>
+                        <li>Créez un programme qui suggère des activités</li>
+                        <li>Prenez en compte la météo, le budget, la saison</li>
+                        <li>Donnez des recommandations personnalisées</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Vérification de commande :</strong>
+                    <ul>
+                        <li>Créez un système pour un restaurant</li>
+                        <li>Vérifiez disponibilité, horaires, places</li>
+                        <li>Gérez les cas spéciaux (allergies, régimes)</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet : Guide touristique intelligent</strong>
+                    <ul>
+                        <li>Créez un programme qui guide les touristes</li>
+                        <li>Utilisez des conditions imbriquées complexes</li>
+                        <li>Gérez de multiples critères de décision</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

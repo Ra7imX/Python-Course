@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY120 - Fonctions en Python | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY120 - Fonctions en Python</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY120</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY119.html" class="prev">← Précédent: PY119</a>
+                <a href="PY121.html" class="next">Suivant: PY121 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Introduction aux fonctions en Python</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre la création de fonctions</li>
+                <li>Maîtriser l'appel de fonctions</li>
+                <li>Apprendre les bonnes pratiques</li>
+                <li>Créer des fonctions réutilisables</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Définition de fonctions simples</h3>
+            <p>Les fonctions en Python sont définies à l'aide du mot-clé <code>def</code>. Voici quelques exemples de fonctions simples :</p>
+
+            <div class="code-block">
+                def saluer_client():
+                    """Fonction simple sans paramètre"""
+                    print("Marhaba! Bienvenue au Maroc!")
+
+                def calculer_total(prix, quantite):
+                    """Fonction avec paramètres"""
+                    return prix * quantite
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Fonctions avec valeurs par défaut</h3>
+            <p>Les fonctions peuvent avoir des paramètres avec des valeurs par défaut :</p>
+
+            <div class="code-block">
+                def calculer_prix_sejour(nuits, prix_nuit=800, petit_dejeuner=True):
+                    """Calcule le prix total d'un séjour"""
+                    total = nuits * prix_nuit
+                    if petit_dejeuner:
+                        total += nuits * 50  # 50 DH par petit-déjeuner
+                    return total
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Documentation des fonctions</h3>
+            <p>Il est important de documenter les fonctions pour expliquer leur fonctionnement :</p>
+
+            <div class="code-block">
+                def convertir_temperature(celsius, unite="F"):
+                    """
+                    Convertit une température de Celsius vers Fahrenheit ou Kelvin.
+                    
+                    Args:
+                        celsius (float): Température en Celsius
+                        unite (str): Unité de conversion ('F' pour Fahrenheit, 'K' pour Kelvin)
+                    
+                    Returns:
+                        float: Température convertie
+                        
+                    Raises:
+                        ValueError: Si l'unité n'est pas 'F' ou 'K'
+                    """
+                    if unite.upper() == "F":
+                        return (celsius * 9/5) + 32
+                    elif unite.upper() == "K":
+                        return celsius + 273.15
+                    else:
+                        raise ValueError("L'unité doit être 'F' ou 'K'")
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Exemple pratique - Système de réservation d'hôtel</h3>
+            <p>Voici un exemple pratique de fonctions pour un système de réservation d'hôtel :</p>
+
+            <div class="code-block">
+                def verifier_disponibilite(date, type_chambre):
+                    """Vérifie si une chambre est disponible"""
+                    # Simulation de disponibilité
+                    disponibilites = {
+                        "simple": ["2024-02-24", "2024-02-25"],
+                        "double": ["2024-02-24"],
+                        "suite": ["2024-02-25"]
+                    }
+                    return date in disponibilites.get(type_chambre, [])
+
+                def calculer_prix_chambre(type_chambre, nuits):
+                    """Calcule le prix total pour une chambre"""
+                    prix_base = {
+                        "simple": 600,
+                        "double": 800,
+                        "suite": 1200
+                    }
+                    return prix_base.get(type_chambre, 0) * nuits
+
+                def effectuer_reservation(client, type_chambre, date_arrivee, nuits):
+                    """
+                    Effectue une réservation complète
+                    
+                    Returns:
+                        dict: Informations de la réservation ou None si impossible
+                    """
+                    if not verifier_disponibilite(date_arrivee, type_chambre):
+                        return None
+                        
+                    prix_total = calculer_prix_chambre(type_chambre, nuits)
+                    
+                    reservation = {
+                        "client": client,
+                        "type_chambre": type_chambre,
+                        "date_arrivee": date_arrivee,
+                        "nuits": nuits,
+                        "prix_total": prix_total
+                    }
+                    
+                    return reservation
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>5. Test des fonctions</h3>
+            <p>Voici un exemple de test pour le système de réservation :</p>
+
+            <div class="code-block">
+                def test_systeme_reservation():
+                    """Fonction de test du système de réservation"""
+                    print("\n=== Test du système de réservation ===")
+                    
+                    # Test de réservation réussie
+                    reservation = effectuer_reservation(
+                        "M. Hassan",
+                        "double",
+                        "2024-02-24",
+                        3
+                    )
+                    
+                    if reservation:
+                        print("\nRéservation effectuée avec succès:")
+                        for cle, valeur in reservation.items():
+                            print(f"{cle}: {valeur}")
+                    else:
+                        print("\nRéservation impossible")
+                    
+                    # Test de réservation impossible
+                    reservation = effectuer_reservation(
+                        "Mme Fatima",
+                        "suite",
+                        "2024-02-24",
+                        2
+                    )
+                    
+                    if not reservation:
+                        print("\nTest de refus réussi: Chambre non disponible")
+
+                # Exécution des tests
+                test_systeme_reservation()
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h3>6. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+
+            <ol>
+                <li>
+                    <strong>Calculateur de voyage :</strong>
+                    <ul>
+                        <li>Créez une fonction qui calcule le coût total d'un voyage</li>
+                        <li>Incluez transport, hébergement, activités</li>
+                        <li>Ajoutez des options pour différentes catégories</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Gestionnaire de réservations :</strong>
+                    <ul>
+                        <li>Développez des fonctions pour gérer un planning</li>
+                        <li>Gérez les conflits de réservation</li>
+                        <li>Implémentez un système de liste d'attente</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Assistant de planification :</strong>
+                    <ul>
+                        <li>Créez des fonctions qui suggèrent des itinéraires</li>
+                        <li>Prenez en compte la durée, le budget, les préférences</li>
+                        <li>Ajoutez des recommandations personnalisées</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet : Agence de voyage complète :</strong>
+                    <ul>
+                        <li>Créez un ensemble de fonctions pour gérer une agence</li>
+                        <li>Implémentez la gestion des clients, réservations, factures</li>
+                        <li>Ajoutez des fonctionnalités de reporting</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY112 - Break et continue : contrôle des boucles | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY112 - Break et continue : contrôle des boucles</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY112</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY111.html" class="prev">← Précédent: PY111</a>
+                <a href="/modules/PY113.HTML" class="next">Suivant: PY113 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Break et continue : contrôle des boucles</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre l'utilisation de break</li>
+                <li>Maîtriser l'utilisation de continue</li>
+                <li>Combiner les structures de contrôle</li>
+                <li>Gérer les cas particuliers</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Utilisation de break</h3>
+            <p>L'instruction <strong>break</strong> permet de sortir complètement d'une boucle, même si la condition de fin n'est pas satisfaite.</p>
+            
+            <p>Exemple - Recherche d'un hôtel dans un budget :</p>
+            <div class="code-block">
+                hotels = [<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{"nom": "Riad Fès", "prix": 1200},<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{"nom": "Palais Marrakech", "prix": 800},<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{"nom": "Atlas Resort", "prix": 600},<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{"nom": "Médina House", "prix": 400}<br>
+                ]<br>
+                <br>
+                budget = 700<br>
+                print("Recherche d'hôtels dans votre budget:")<br>
+                for hotel in hotels:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if hotel["prix"] <= budget:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Trouvé ! {hotel['nom']} à {hotel['prix']} DH")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Vérifiction de {hotel['nom']}...")<br>
+            </div>
+            
+            <p>Résultat :</p>
+            <div class="code-interactive">
+                <span class="output">Recherche d'hôtels dans votre budget:</span><br>
+                <span class="output">Vérifiction de Riad Fès...</span><br>
+                <span class="output">Vérifiction de Palais Marrakech...</span><br>
+                <span class="output">Trouvé ! Atlas Resort à 600 DH</span><br>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Utilisation de continue</h3>
+            <p>L'instruction <strong>continue</strong> permet de passer à l'itération suivante de la boucle, en ignorant le reste du code dans la boucle pour l'itération actuelle.</p>
+            
+            <p>Exemple - Filtrage des activités disponibles :</p>
+            <div class="code-block">
+                activites = [<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{"nom": "Visite Médina", "disponible": True},<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{"nom": "Tour en chameau", "disponible": False},<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{"nom": "Cours de cuisine", "disponible": True},<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{"nom": "Spa hammam", "disponible": False}<br>
+                ]<br>
+                <br>
+                print("Activités disponibles:")<br>
+                for activite in activites:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if not activite["disponible"]:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"- {activite['nom']}")<br>
+            </div>
+            
+            <p>Résultat :</p>
+            <div class="code-interactive">
+                <span class="output">Activités disponibles:</span><br>
+                <span class="output">- Visite Médina</span><br>
+                <span class="output">- Cours de cuisine</span><br>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Combinaison de break et continue</h3>
+            <p>Les instructions <strong>break</strong> et <strong>continue</strong> peuvent être combinées pour créer des algorithmes plus complexes.</p>
+            
+            <p>Exemple - Recherche de voyage :</p>
+            <div class="code-block">
+                def rechercher_voyage():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Recherche un voyage selon des critères spécifiques<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;voyages = [<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"destination": "Marrakech", "prix": 3000, "disponible": True},<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"destination": "Agadir", "prix": 2500, "disponible": False},<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"destination": "Tanger", "prix": 2000, "disponible": True},<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"destination": "Essaouira", "prix": 1800, "disponible": True}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;budget_max = 2200<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"Recherche de voyages à moins de {budget_max} DH:")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;for voyage in voyages:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Sauter les voyages non disponibles<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if not voyage["disponible"]:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Voyage à {voyage['destination']} non disponible, recherche suivante...")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Vérifier le budget<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if voyage["prix"] <= budget_max:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Voyage trouvé : {voyage['destination']} à {voyage['prix']} DH")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Voyage à {voyage['destination']} trop cher, recherche suivante...")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;else:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Aucun voyage trouvé dans votre budget")<br>
+            </div>
+            
+            <p>Résultat :</p>
+            <div class="code-interactive">
+                <span class="output">Recherche de voyages à moins de 2200 DH:</span><br>
+                <span class="output">Voyage à Marrakech trop cher, recherche suivante...</span><br>
+                <span class="output">Voyage à Agadir non disponible, recherche suivante...</span><br>
+                <span class="output">Voyage trouvé : Tanger à 2000 DH</span><br>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Exemple pratique - Système de réservation</h3>
+            <p>Voici un exemple plus complexe combinant les structures de contrôle :</p>
+            
+            <div class="code-block">
+                def systeme_reservation():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Système de réservation pour un restaurant marocain<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;places_disponibles = 20<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;reservations = []<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;while True:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("=== Système de Réservation ===")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"Places disponibles : {places_disponibles}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("1. Nouvelle réservation")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("2. Annuler réservation")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("3. Voir réservations")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("4. Quitter")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choix = input("Votre choix : ")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if choix == "1":<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nombre_personnes = int(input("Nombre de personnes : "))<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if nombre_personnes <= 0:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Nombre invalide")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if nombre_personnes > places_disponibles:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Désolé, pas assez de places")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nom = input("Nom de la réservation : ")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reservations.append({"nom": nom, "personnes": nombre_personnes})<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;places_disponibles -= nombre_personnes<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif choix == "2":<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Code pour annuler une réservation<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# ... (code omis pour plus de clarté)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif choix == "3":<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Code pour afficher les réservations<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# ... (code omis pour plus de clarté)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elif choix == "4":<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Au revoir!")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("Choix invalide")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue<br>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>5. Notes techniques importantes</h3>
+            <ul>
+                <li>
+                    <strong>Break :</strong>
+                    <ul>
+                        <li>Sort complètement de la boucle</li>
+                        <li>Utile pour arrêter une recherche</li>
+                        <li>Souvent utilisé avec while True</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Continue :</strong>
+                    <ul>
+                        <li>Passe à l'itération suivante</li>
+                        <li>Utile pour sauter des cas particuliers</li>
+                        <li>Évite les conditions imbriquées</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Bonnes pratiques :</strong>
+                    <ul>
+                        <li>Utiliser break avec parcimonie</li>
+                        <li>Préférer des conditions claires</li>
+                        <li>Documenter l'utilisation de break/continue</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section class="exercises">
+            <h3>6. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+
+            <ol>
+                <li>
+                    <strong>Système de recherche :</strong>
+                    <ul>
+                        <li>Créez un moteur de recherche d'hôtels</li>
+                        <li>Utilisez break pour arrêter à la première correspondance</li>
+                        <li>Gérez différents critères de recherche</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Filtrage de données :</strong>
+                    <ul>
+                        <li>Créez un système de filtrage d'activités</li>
+                        <li>Utilisez continue pour sauter les éléments non pertinents</li>
+                        <li>Ajoutez plusieurs critères de filtrage</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Système de réservation :</strong>
+                    <ul>
+                        <li>Créez un système pour un spa marocain</li>
+                        <li>Gérez les disponibilités et annulations</li>
+                        <li>Utilisez break et continue de manière appropriée</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet : Agent de voyage :</strong>
+                    <ul>
+                        <li>Créez un programme complet de recherche de voyages</li>
+                        <li>Implémentez différentes options de recherche</li>
+                        <li>Utilisez toutes les structures de contrôle</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

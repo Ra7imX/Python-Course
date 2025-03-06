@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY119 - Les ensembles (sets) en Python | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY119 - Les ensembles (sets) en Python</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY119</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY118.html" class="prev">← Précédent: PY118</a>
+                <a href="PY120.html" class="next">Suivant: PY120 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Introduction aux ensembles (sets) en Python</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre le concept d'ensemble</li>
+                <li>Maîtriser les opérations sur les ensembles</li>
+                <li>Savoir quand utiliser les ensembles</li>
+                <li>Appliquer les ensembles dans des cas pratiques</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Création d'ensembles</h3>
+            <p>Les ensembles en Python sont des collections non ordonnées d'éléments uniques. Voici comment les créer :</p>
+
+            <div class="code-block">
+                # Création directe
+                villes_imperiales = {"Fès", "Meknès", "Marrakech", "Rabat"}
+
+                # Création à partir d'une liste
+                villes_cotières = set(["Tanger", "Casablanca", "Agadir", "Essaouira"])
+
+                # Ensemble vide
+                nouvelles_destinations = set()
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Opérations de base</h3>
+            <p>Les ensembles permettent des opérations de base comme l'ajout et la suppression d'éléments :</p>
+
+            <div class="code-block">
+                # Ajout d'éléments
+                villes_cotières.add("El Jadida")
+
+                # Suppression d'éléments
+                villes_imperiales.remove("Rabat")  # Lève une erreur si l'élément n'existe pas
+                villes_cotières.discard("Tétouan") # Ne lève pas d'erreur si l'élément n'existe pas
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Opérations ensemblistes</h3>
+            <p>Les ensembles permettent des opérations comme l'union, l'intersection et la différence :</p>
+
+            <div class="code-block">
+                # Création d'ensembles pour les exemples
+                hotels_avec_piscine = {"Riad Fès", "Atlas Marrakech", "Marina Agadir"}
+                hotels_avec_spa = {"Riad Fès", "Palm Resort", "Marina Agadir"}
+
+                # Union (tous les hôtels avec piscine OU spa)
+                tous_hotels_luxe = hotels_avec_piscine | hotels_avec_spa
+                print("\nTous les hôtels de luxe:", tous_hotels_luxe)
+
+                # Intersection (hôtels avec piscine ET spa)
+                hotels_complets = hotels_avec_piscine & hotels_avec_spa
+                print("\nHôtels avec piscine et spa:", hotels_complets)
+
+                # Différence (hôtels avec piscine mais SANS spa)
+                hotels_piscine_seule = hotels_avec_piscine - hotels_avec_spa
+                print("\nHôtels avec piscine uniquement:", hotels_piscine_seule)
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Exemple pratique - Système de recommandation touristique</h3>
+            <p>Voici un exemple pratique d'utilisation des ensembles dans un système de recommandation touristique :</p>
+
+            <div class="code-block">
+                class SystemeRecommandation:
+                    def __init__(self):
+                        # Initialisation des données
+                        self.activites = {
+                            "culturel": {"Musées", "Médinas", "Monuments historiques", "Artisanat"},
+                            "nature": {"Jardins", "Montagnes", "Plages", "Désert"},
+                            "gastronomie": {"Restaurants traditionnels", "Cours de cuisine", "Marchés"},
+                            "detente": {"Spa", "Hammam", "Piscine", "Massage"}
+                        }
+                        
+                        self.villes = {
+                            "Marrakech": {
+                                "activites": {"Médinas", "Monuments historiques", "Spa", "Jardins"},
+                                "climat": "chaud",
+                                "budget": "moyen"
+                            },
+                            "Fès": {
+                                "activites": {"Médinas", "Artisanat", "Monuments historiques"},
+                                "climat": "modéré",
+                                "budget": "économique"
+                            },
+                            "Agadir": {
+                                "activites": {"Plages", "Spa", "Restaurants traditionnels"},
+                                "climat": "doux",
+                                "budget": "élevé"
+                            }
+                        }
+                    
+                    def trouver_activites_communes(self, ville1, ville2):
+                        """Trouve les activités communes entre deux villes"""
+                        if ville1 in self.villes and ville2 in self.villes:
+                            activites1 = self.villes[ville1]["activites"]
+                            activites2 = self.villes[ville2]["activites"]
+                            return activites1 & activites2
+                        return set()
+                    
+                    def suggerer_villes(self, activites_souhaitees):
+                        """Suggère des villes selon les activités souhaitées"""
+                        suggestions = {}
+                        for ville, info in self.villes.items():
+                            activites_communes = info["activites"] & activites_souhaitees
+                            if activites_communes:
+                                suggestions[ville] = {
+                                    "activites_disponibles": activites_communes,
+                                    "pourcentage": len(activites_communes) / len(activites_souhaitees) * 100
+                                }
+                        return suggestions
+
+                # Test du système
+                systeme = SystemeRecommandation()
+
+                # Test des activités communes
+                print("\nActivités communes entre Marrakech et Fès:")
+                print(systeme.trouver_activites_communes("Marrakech", "Fès"))
+
+                # Test des suggestions
+                activites_recherchees = {"Médinas", "Spa", "Jardins"}
+                suggestions = systeme.suggerer_villes(activites_recherchees)
+                print("\nSuggestions selon vos critères:")
+                for ville, info in suggestions.items():
+                    print(f"\n{ville}:")
+                    print(f"Activités disponibles: {info['activites_disponibles']}")
+                    print(f"Correspondance: {info['pourcentage']:.1f}%")
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h3>5. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+
+            <ol>
+                <li>
+                    <strong>Gestion des activités :</strong>
+                    <ul>
+                        <li>Créez des ensembles d'activités pour différentes villes</li>
+                        <li>Trouvez les activités communes entre trois villes</li>
+                        <li>Identifiez les activités uniques à chaque ville</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Planification de circuit :</strong>
+                    <ul>
+                        <li>Créez des ensembles de sites touristiques par région</li>
+                        <li>Trouvez un circuit optimal qui évite les doublons</li>
+                        <li>Gérez les contraintes de temps et de distance</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Système de services hôteliers :</strong>
+                    <ul>
+                        <li>Créez des ensembles de services pour différents hôtels</li>
+                        <li>Comparez les services entre catégories d'hôtels</li>
+                        <li>Trouvez les services exclusifs</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet : Comparateur touristique :</strong>
+                    <ul>
+                        <li>Développez un système qui compare plusieurs destinations</li>
+                        <li>Utilisez les opérations sur les ensembles pour les recommandations</li>
+                        <li>Implémentez un système de filtrage par critères</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

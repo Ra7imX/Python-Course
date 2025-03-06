@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY108 - Les opérateurs de comparaison et expressions booléennes | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY108 - Les opérateurs de comparaison et expressions booléennes</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY108</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY107.html" class="prev">← Précédent: PY107</a>
+                <a href="PY109.html" class="next">Suivant: PY109 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Les opérateurs de comparaison et expressions booléennes</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre les opérateurs de comparaison</li>
+                <li>Maîtriser les expressions booléennes</li>
+                <li>Combiner les comparaisons</li>
+                <li>Utiliser les comparaisons dans des conditions</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Opérateurs de comparaison de base</h3>
+            <p>Python offre plusieurs opérateurs pour comparer des valeurs :</p>
+
+            <div class="code-block">
+                prix_tajine = 75<br>
+                prix_couscous = 85<br>
+                <br>
+                # Égalité (==)<br>
+                print(prix_tajine == prix_couscous)  # False<br>
+                <br>
+                # Différence (!=)<br>
+                print(prix_tajine != prix_couscous)  # True<br>
+                <br>
+                # Supérieur (>)<br>
+                print(prix_tajine > 50)  # True<br>
+                <br>
+                # Inférieur (<)<br>
+                print(prix_tajine < prix_couscous)  # True<br>
+                <br>
+                # Supérieur ou égal (>=)<br>
+                print(prix_tajine >= 75)  # True<br>
+                <br>
+                # Inférieur ou égal (<=)<br>
+                print(prix_couscous <= 85)  # True
+            </div>
+
+            <p>Chaque opérateur renvoie une valeur booléenne (True ou False) selon que la comparaison est vraie ou fausse.</p>
+        </section>
+
+        <section class="section">
+            <h3>2. Comparaisons de chaînes</h3>
+            <p>Les opérateurs de comparaison fonctionnent également avec les chaînes de caractères :</p>
+
+            <div class="code-block">
+                ville1 = "Casablanca"<br>
+                ville2 = "casablanca"<br>
+                <br>
+                print(ville1 == ville2)        # False (sensible à la casse)<br>
+                print(ville1.lower() == ville2.lower())  # True<br>
+                <br>
+                # Ordre alphabétique<br>
+                villes = ["Rabat", "Agadir", "Fès"]<br>
+                print("Agadir" < "Rabat")  # True (ordre alphabétique)<br>
+                print(sorted(villes))  # Trie les villes
+            </div>
+
+            <p>Les comparaisons de chaînes sont basées sur l'ordre lexicographique (ordre du dictionnaire) et sont sensibles à la casse.</p>
+        </section>
+
+        <section class="section">
+            <h3>3. Opérateurs logiques</h3>
+            <p>Python propose trois opérateurs logiques principaux pour combiner des expressions booléennes :</p>
+
+            <div class="code-block">
+                # AND (et)<br>
+                prix = 100<br>
+                stock = 5<br>
+                disponible = prix <= 150 and stock > 0<br>
+                print(f"Article disponible : {disponible}")<br>
+                <br>
+                # OR (ou)<br>
+                en_promotion = prix < 80 or stock > 10<br>
+                print(f"En promotion : {en_promotion}")<br>
+                <br>
+                # NOT (non)<br>
+                rupture_stock = not (stock > 0)<br>
+                print(f"Rupture de stock : {rupture_stock}")
+            </div>
+
+            <p>Tableau des opérateurs logiques :</p>
+            <ul>
+                <li><strong>and</strong> : renvoie True si les deux conditions sont vraies</li>
+                <li><strong>or</strong> : renvoie True si au moins une des conditions est vraie</li>
+                <li><strong>not</strong> : inverse la valeur booléenne (True devient False et vice versa)</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>4. Cas pratique - Système de réservation</h3>
+            <p>Exemple d'application pratique des comparaisons dans un système de réservation d'hôtel :</p>
+
+            <div class="code-block">
+                def verifier_disponibilite_hotel(personnes, budget, jours):<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Vérifie si une réservation d'hôtel est possible<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;selon les critères donnés<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"""<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;prix_par_jour = 300<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;capacite_max = 4<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;duree_min = 2<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;duree_max = 15<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;# Vérifications multiples<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;prix_total = prix_par_jour * jours<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;budget_suffisant = prix_total <= budget<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;capacite_ok = personnes <= capacite_max<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;duree_valide = duree_min <= jours <= duree_max<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;# Combinaison des conditions<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;reservation_possible = (<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;budget_suffisant and <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;capacite_ok and <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;duree_valide<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;# Retour détaillé<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"possible": reservation_possible,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"raisons": {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"budget_ok": budget_suffisant,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"capacite_ok": capacite_ok,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"duree_ok": duree_valide<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                <br>
+                # Test du système<br>
+                resultat = verifier_disponibilite_hotel(<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;personnes=3,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;budget=1000,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;jours=4<br>
+                )<br>
+                <br>
+                print("\nRésultat de la vérification :")<br>
+                print(f"Réservation possible : {resultat['possible']}")<br>
+                for critere, valeur in resultat['raisons'].items():<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(f"{critere} : {valeur}")
+            </div>
+
+            <p>Dans cet exemple, nous utilisons plusieurs comparaisons combinées pour vérifier si une réservation d'hôtel est possible.</p>
+        </section>
+
+        <section class="exercises">
+            <h3>5. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+
+            <ol>
+                <li>
+                    <strong>Comparaisons simples :</strong>
+                    <ul>
+                        <li>Créez un système de comparaison de prix</li>
+                        <li>Comparez différents hôtels</li>
+                        <li>Affichez le meilleur rapport qualité/prix</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Logique combinée :</strong>
+                    <ul>
+                        <li>Créez un système de vérification de voyage</li>
+                        <li>Combinez plusieurs conditions</li>
+                        <li>Gérez les cas particuliers</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Système de réservation :</strong>
+                    <ul>
+                        <li>Créez un système pour un restaurant</li>
+                        <li>Vérifiez disponibilité, horaires, places</li>
+                        <li>Donnez des réponses détaillées</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Projet : Comparateur de voyages</strong>
+                    <ul>
+                        <li>Créez un système comparant différentes offres</li>
+                        <li>Utilisez plusieurs critères</li>
+                        <li>Fournissez des recommandations</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY102 - Les commentaires en Python | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY102 - Les commentaires en Python</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY102</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="PY101.html" class="prev">← Précédent: PY101</a>
+                <a href="PY103.html" class="next">Suivant: PY103 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Les commentaires et la documentation du code Python</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre l'importance des commentaires</li>
+                <li>Maîtriser les différents types de commentaires</li>
+                <li>Apprendre les bonnes pratiques de documentation</li>
+                <li>Savoir quand et comment commenter son code</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Types de commentaires en Python</h3>
+            <p>Python offre plusieurs façons de commenter votre code :</p>
+
+            <ul>
+                <li>
+                    <strong>Commentaires sur une ligne :</strong>
+                    <ul>
+                        <li>Commencent par le caractère # (dièse)</li>
+                        <li>Peuvent être placés sur une ligne dédiée</li>
+                        <li>Peuvent également être placés en fin de ligne</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Commentaires multi-lignes :</strong>
+                    <ul>
+                        <li>Utilisent des triples guillemets doubles (""") ou simples (''')</li>
+                        <li>Permettent d'écrire des commentaires sur plusieurs lignes</li>
+                        <li>Souvent utilisés pour la documentation de fonctions (docstrings)</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p>Exemples de commentaires :</p>
+            <div class="code-block">
+# Ceci est un commentaire sur une ligne<br>
+print("Salam!")  # Commentaire en fin de ligne<br>
+<br>
+"""<br>
+Ceci est un commentaire<br>
+sur plusieurs lignes avec<br>
+des guillemets doubles<br>
+"""<br>
+<br>
+'''<br>
+Autre façon de faire<br>
+des commentaires sur<br>
+plusieurs lignes avec<br>
+des guillemets simples<br>
+'''
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Documentation de variables</h3>
+            <p>Les commentaires permettent d'expliquer l'utilisation des variables :</p>
+            
+            <div class="code-block">
+# Variables pour un match de football<br>
+score_wydad = 2        # Buts marqués par le Wydad<br>
+score_raja = 1         # Buts marqués par le Raja<br>
+temps_jeu = 90         # Durée du match en minutes<br>
+est_termine = True     # Indique si le match est fini
+            </div>
+
+            <p>Ces commentaires permettent de :</p>
+            <ul>
+                <li>Clarifier l'objectif de chaque variable</li>
+                <li>Préciser les unités utilisées</li>
+                <li>Documenter les valeurs attendues</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>3. Documentation de processus</h3>
+            <p>Pour des calculs ou processus complexes, les commentaires aident à suivre la logique :</p>
+            <div class="code-block">
+# Calculer le prix total d'un repas traditionnel<br>
+prix_plat = 75        # Prix du plat principal en DH<br>
+prix_dessert = 25     # Prix du dessert en DH<br>
+prix_the = 10         # Prix du thé à la menthe en DH<br>
+<br>
+# Calcul du total avec TVA<br>
+tva = 0.20            # Taux de TVA à 20%<br>
+total_ht = prix_plat + prix_dessert + prix_the  # Total hors taxe<br>
+total_ttc = total_ht * (1 + tva)                # Total TTC
+            </div>
+
+            <p>Avantages de cette approche :</p>
+            <ul>
+                <li>Décomposition claire des étapes</li>
+                <li>Documentation des constantes et des formules</li>
+                <li>Facilité de maintenance du code</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>4. Documentation de fonctions</h3>
+            <p>Les fonctions en Python doivent être documentées avec des "docstrings" :</p>
+            <div class="code-block">
+def calculer_distance(ville1, ville2, vitesse):<br>
+    """<br>
+    Calcule le temps de trajet entre deux villes marocaines.<br>
+    <br>
+    Arguments :<br>
+        ville1 (str) : Ville de départ<br>
+        ville2 (str) : Ville d'arrivée<br>
+        vitesse (float) : Vitesse moyenne en km/h<br>
+    <br>
+    Retourne :<br>
+        float : Temps de trajet en heures<br>
+    """<br>
+    # Dictionnaire des distances entre villes (en km)<br>
+    distances = {<br>
+        ("Casablanca", "Rabat"): 87,<br>
+        ("Rabat", "Tanger"): 250,<br>
+        ("Casablanca", "Marrakech"): 240<br>
+    }<br>
+    <br>
+    # Calcul du temps de trajet<br>
+    distance = distances.get((ville1, ville2), 0)<br>
+    return distance / vitesse if distance > 0 else 0
+            </div>
+
+            <p>Une bonne docstring contient :</p>
+            <ul>
+                <li>Description générale de la fonction</li>
+                <li>Paramètres avec leurs types et descriptions</li>
+                <li>Valeur de retour avec type et description</li>
+                <li>Exemples d'utilisation (facultatif)</li>
+                <li>Notes sur les cas particuliers (facultatif)</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>5. Commentaires pour le débogage</h3>
+            <p>Les commentaires peuvent être utilisés pour le débogage temporaire :</p>
+            <div class="code-block">
+# DEBUG: Afficher les valeurs pour vérification<br>
+# print(f"Distance: {distance} km")<br>
+# print(f"Vitesse: {vitesse} km/h")<br>
+# print(f"Temps: {temps} heures")
+            </div>
+
+            <p>Pratiques de débogage :</p>
+            <ul>
+                <li>Commenter le code de débogage plutôt que de le supprimer</li>
+                <li>Utiliser des préfixes comme DEBUG ou TODO</li>
+                <li>Se rappeler de nettoyer ces commentaires avant la mise en production</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h3>6. Bonnes pratiques de commentaires</h3>
+            <p>Pour des commentaires efficaces, suivez ces conseils :</p>
+
+            <ul>
+                <li>
+                    <strong>Quand commenter :</strong>
+                    <ul>
+                        <li>Pour expliquer le "pourquoi" plutôt que le "quoi"</li>
+                        <li>Pour documenter des décisions importantes</li>
+                        <li>Pour clarifier du code complexe</li>
+                        <li>Pour indiquer des cas particuliers</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Quand ne pas commenter :</strong>
+                    <ul>
+                        <li>Code évident ou auto-documenté</li>
+                        <li>Informations redondantes</li>
+                        <li>Code temporaire ou obsolète</li>
+                        <li>Informations qui peuvent devenir obsolètes</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Style de commentaires :</strong>
+                    <ul>
+                        <li>Rester concis et précis</li>
+                        <li>Utiliser un langage professionnel</li>
+                        <li>Maintenir les commentaires à jour</li>
+                        <li>Être cohérent dans le style</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Types de commentaires utiles :</strong>
+                    <ul>
+                        <li>Documentation de fonction (docstring)</li>
+                        <li>Explications d'algorithmes complexes</li>
+                        <li>Notes sur les limitations</li>
+                        <li>TODO et FIXME pour le suivi</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section class="exercises">
+            <h3>7. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+
+            <ol>
+                <li>
+                    <strong>Documentation de base :</strong>
+                    <ul>
+                        <li>Créez des variables pour décrire un match de foot</li>
+                        <li>Commentez chaque variable de manière appropriée</li>
+                        <li>Ajoutez un commentaire multiligne expliquant le contexte</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Documentation de calculs :</strong>
+                    <ul>
+                        <li>Écrivez un programme qui calcule le prix d'un voyage</li>
+                        <li>Commentez chaque étape du calcul</li>
+                        <li>Ajoutez des commentaires pour les cas particuliers</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Documentation de fonction :</strong>
+                    <ul>
+                        <li>Créez une fonction qui convertit des températures</li>
+                        <li>Écrivez une docstring complète</li>
+                        <li>Ajoutez des commentaires pour les cas limites</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Pratique des commentaires :</strong>
+                    <ul>
+                        <li>Prenez un code existant sans commentaires</li>
+                        <li>Ajoutez des commentaires appropriés</li>
+                        <li>Identifiez les parties qui n'ont pas besoin de commentaires</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Défi de documentation :</strong>
+                    <ul>
+                        <li>Documentez un petit programme de gestion de restaurant</li>
+                        <li>Utilisez tous les types de commentaires</li>
+                        <li>Suivez les bonnes pratiques de documentation</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY124 - Gestion des erreurs avec try et except | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY124 - Gestion des erreurs avec try et except</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY124</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY123.html" class="prev">← Précédent: PY123</a>
+                <a href="PY125.html" class="next">Suivant: PY125 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Gestion des erreurs avec try et except</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre le mécanisme try/except</li>
+                <li>Maîtriser la gestion des différentes exceptions</li>
+                <li>Utiliser finally et else</li>
+                <li>Implémenter une gestion d'erreurs robuste</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Structure de base try/except</h3>
+            <div class="code-block">
+                def convertir_prix(prix_str):
+                    """Convertit une chaîne en prix"""
+                    try:
+                        prix = float(prix_str)
+                        return prix
+                    except ValueError:
+                        print(f"Erreur: '{prix_str}' n'est pas un prix valide")
+                        return 0
+
+                # Test de conversion
+                print(convertir_prix("100.50"))  # Ok
+                print(convertir_prix("abc"))     # Erreur
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Gestion de plusieurs exceptions</h3>
+            <div class="code-block">
+                def obtenir_information_hotel(nom, base_donnees):
+                    """Récupère les informations d'un hôtel"""
+                    try:
+                        hotel = base_donnees[nom]
+                        prix = float(hotel["prix"])
+                        return f"Hôtel {nom}: {prix} DH"
+                    except KeyError:
+                        return f"Hôtel '{nom}' non trouvé"
+                    except ValueError:
+                        return f"Prix invalide pour l'hôtel {nom}"
+                    except Exception as e:
+                        return f"Erreur inattendue: {str(e)}"
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Utilisation de else et finally</h3>
+            <div class="code-block">
+                def effectuer_reservation(client, montant):
+                    """Effectue une réservation avec gestion d'erreurs complète"""
+                    connexion = None
+                    try:
+                        connexion = ouvrir_connexion()  # Fonction hypothétique
+                        if montant <= 0:
+                            raise ValueError("Le montant doit être positif")
+                        
+                        transaction = enregistrer_paiement(connexion, montant)  # Fonction hypothétique
+                        
+                    except ValueError as ve:
+                        print(f"Erreur de validation: {str(ve)}")
+                        return False
+                    except Exception as e:
+                        print(f"Erreur de traitement: {str(e)}")
+                        return False
+                    else:
+                        # Exécuté si aucune exception n'est levée
+                        envoyer_confirmation(client, transaction)  # Fonction hypothétique
+                        return True
+                    finally:
+                        # Toujours exécuté
+                        if connexion:
+                            connexion.close()  # Fonction hypothétique
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Exemple pratique - Système de réservation robuste</h3>
+            <div class="code-block">
+                class SystemeReservationRobuste:
+                    def __init__(self):
+                        self.base_donnees = {
+                            "chambres": {
+                                "101": {"type": "standard", "prix": 800, "disponible": True},
+                                "102": {"type": "suite", "prix": 1500, "disponible": True}
+                            },
+                            "clients": {}
+                        }
+                    
+                    def verifier_disponibilite(self, numero_chambre):
+                        """Vérifie la disponibilité d'une chambre avec gestion d'erreurs"""
+                        try:
+                            chambre = self.base_donnees["chambres"][numero_chambre]
+                            return chambre["disponible"]
+                        except KeyError:
+                            print(f"Erreur: Chambre {numero_chambre} non trouvée")
+                            return False
+                        except Exception as e:
+                            print(f"Erreur inattendue: {str(e)}")
+                            return False
+
+                    def effectuer_reservation(self, client, numero_chambre, nuits):
+                        """Effectue une réservation complète avec gestion d'erreurs"""
+                        try:
+                            # Vérifications
+                            if nuits <= 0:
+                                raise ValueError("Le nombre de nuits doit être positif")
+                            
+                            if not self.verifier_disponibilite(numero_chambre):
+                                raise ValueError("Chambre non disponible")
+                            
+                            # Calcul du prix
+                            chambre = self.base_donnees["chambres"][numero_chambre]
+                            prix_total = chambre["prix"] * nuits
+                            
+                            # Enregistrement
+                            reservation = {
+                                "client": client,
+                                "chambre": numero_chambre,
+                                "nuits": nuits,
+                                "prix_total": prix_total
+                            }
+                            
+                            # Mise à jour de la disponibilité
+                            chambre["disponible"] = False
+                            
+                            return reservation
+                            
+                        except ValueError as ve:
+                            print(f"Erreur de validation: {str(ve)}")
+                            return None
+                        except KeyError as ke:
+                            print(f"Erreur de données: {str(ke)}")
+                            return None
+                        except Exception as e:
+                            print(f"Erreur inattendue: {str(e)}")
+                            return None
+
+                # Test du système
+                systeme = SystemeReservationRobuste()
+
+                print("\n=== Tests du système de réservation ===")
+
+                # Test réussi
+                reservation = systeme.effectuer_reservation("Mohammed", "101", 3)
+                if reservation:
+                    print("\nRéservation réussie:")
+                    for cle, valeur in reservation.items():
+                        print(f"{cle}: {valeur}")
+
+                # Tests avec erreurs
+                reservation_erreur1 = systeme.effectuer_reservation("Fatima", "999", 2)  # Chambre inexistante
+                reservation_erreur2 = systeme.effectuer_reservation("Ahmed", "101", -1)  # Nuits négatives
+                reservation_erreur3 = systeme.effectuer_reservation("Sofia", "101", 2)   # Chambre déjà réservée
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>5. Notes techniques importantes</h3>
+            <ul>
+                <li><strong>Structure try/except :</strong>
+                    <ul>
+                        <li>try: Code susceptible de lever une exception</li>
+                        <li>except ExceptionType: Gestion de l'exception</li>
+                        <li>else: Exécuté si pas d'exception</li>
+                        <li>finally: Toujours exécuté</li>
+                    </ul>
+                </li>
+                <li><strong>Types d'exceptions courants :</strong>
+                    <ul>
+                        <li>ValueError</li>
+                        <li>TypeError</li>
+                        <li>KeyError</li>
+                        <li>IndexError</li>
+                        <li>FileNotFoundError</li>
+                    </ul>
+                </li>
+                <li><strong>Bonnes pratiques :</strong>
+                    <ul>
+                        <li>Exceptions spécifiques avant générales</li>
+                        <li>Messages d'erreur clairs</li>
+                        <li>Nettoyage des ressources</li>
+                        <li>Documentation des exceptions</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section class="exercises">
+            <h3>6. Exercices pratiques</h3>
+            <ol>
+                <li><strong>Validation de réservation :</strong>
+                    <ul>
+                        <li>Créez un système de validation complet</li>
+                        <li>Gérez différents types d'erreurs</li>
+                        <li>Implémentez des messages d'erreur détaillés</li>
+                        <li>Ajoutez des logs d'erreurs</li>
+                    </ul>
+                </li>
+                <li><strong>Gestion de paiement :</strong>
+                    <ul>
+                        <li>Développez un système de paiement sécurisé</li>
+                        <li>Gérez les erreurs de transaction</li>
+                        <li>Implémentez des rollbacks en cas d'erreur</li>
+                        <li>Ajoutez des notifications d'erreur</li>
+                    </ul>
+                </li>
+                <li><strong>Système de fichiers :</strong>
+                    <ul>
+                        <li>Créez un gestionnaire de fichiers clients</li>
+                        <li>Gérez les erreurs de lecture/écriture</li>
+                        <li>Implémentez des sauvegardes automatiques</li>
+                        <li>Ajoutez une récupération après erreur</li>
+                    </ul>
+                </li>
+                <li><strong>Projet : Application complète :</strong>
+                    <ul>
+                        <li>Développez une application de gestion hôtelière</li>
+                        <li>Implémentez une gestion d'erreurs robuste</li>
+                        <li>Gérez les cas d'erreur complexes</li>
+                        <li>Créez un système de reporting d'erreurs</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

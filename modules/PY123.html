@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/py.css">
+    <link rel="icon" href="/images/icons8-python-48.png">
+    <title>PY123 - Portée des Variables | ISTA Hay Riad</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Logo Python">
+            </div>
+            <div class="header-title">
+                <h1>PY123 - Portée des Variables</h1>
+                <p>Formation Python - ISTA Hay Riad</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <div class="breadcrumb">
+                <a href="/index.html">Accueil</a>
+                <span>></span>
+                <span>PY123</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="/modules/PY122.html" class="prev">← Précédent: PY122</a>
+                <a href="PY124.html" class="next">Suivant: PY124 →</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="lesson-header">
+            <h2>Portée des Variables (locale vs globale)</h2>
+        </section>
+
+        <section class="objectives">
+            <h3>Objectifs d'apprentissage</h3>
+            <ol>
+                <li>Comprendre les différentes portées de variables</li>
+                <li>Maîtriser l'utilisation des variables globales et locales</li>
+                <li>Éviter les pièges courants liés à la portée</li>
+                <li>Appliquer les bonnes pratiques</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h3>1. Variables locales et globales</h3>
+            <p>Exemple de variable globale et locale :</p>
+            <div class="code-block">
+                # Variable globale
+                prix_standard = 500  # Prix standard d'une nuit d'hôtel
+
+                def calculer_sejour(nuits):
+                    # Variable locale
+                    taxe_locale = 0.1
+                    # Utilisation de la variable globale
+                    total = prix_standard * nuits * (1 + taxe_locale)
+                    return total
+            </div>
+            <p>Test de portée :</p>
+            <div class="code-interactive">
+                <span class="prompt">>>></span> print(f"Prix standard: {prix_standard}")  # Accessible<br>
+                <span class="output">Prix standard: 500</span><br>
+                <span class="prompt">>>></span> try:<br>
+                <span class="prompt">>>></span>     print(taxe_locale)  # Va générer une erreur<br>
+                <span class="output">La variable taxe_locale n'est pas accessible ici</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>2. Modification de variables globales</h3>
+            <p>Exemple de modification d'une variable globale :</p>
+            <div class="code-block">
+                total_reservations = 0
+
+                def enregistrer_reservation():
+                    global total_reservations  # Déclaration pour modifier la variable globale
+                    total_reservations += 1
+                    return f"Réservation n°{total_reservations}"
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>3. Variables dans les fonctions imbriquées</h3>
+            <p>Exemple de variables dans des fonctions imbriquées :</p>
+            <div class="code-block">
+                def gerer_hotel():
+                    nom_hotel = "Riad Marrakech"  # Variable de la fonction externe
+                    
+                    def ajouter_client(client):
+                        # Accès à la variable de la fonction externe
+                        message = f"Client ajouté à {nom_hotel}"
+                        return message
+                    
+                    def obtenir_hotel():
+                        return nom_hotel
+                    
+                    return ajouter_client, obtenir_hotel
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>4. Exemple pratique - Système de gestion hôtelière</h3>
+            <p>Exemple de classe avec gestion de variables de classe et d'instance :</p>
+            <div class="code-block">
+                class SystemeHotel:
+                    # Variables de classe (partagées)
+                    prix_base = {
+                        "standard": 800,
+                        "suite": 1500
+                    }
+                    
+                    def __init__(self):
+                        # Variables d'instance (propres à chaque instance)
+                        self.reservations = []
+                        self.chiffre_affaires = 0
+                    
+                    def ajouter_reservation(self, type_chambre, nuits):
+                        if type_chambre in self.prix_base:
+                            # Variable locale à la méthode
+                            prix_total = self.prix_base[type_chambre] * nuits
+                            self.chiffre_affaires += prix_total
+                            self.reservations.append({
+                                "type": type_chambre,
+                                "nuits": nuits,
+                                "prix": prix_total
+                            })
+                            return True
+                        return False
+            </div>
+        </section>
+
+        <section class="exercises">
+            <h3>5. Exercices pratiques</h3>
+            <p>Exercices à réaliser :</p>
+            <ol>
+                <li>Gestion de compteurs : Créez un système de comptage de clients en utilisant des variables globales et locales.</li>
+                <li>Configuration hôtelière : Développez un système de configuration avec des paramètres globaux et locaux.</li>
+                <li>Gestionnaire de sessions : Créez un système de gestion de sessions en utilisant des variables de différentes portées.</li>
+                <li>Projet : Système de réservation : Développez un système complet en utilisant correctement les différentes portées.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 ISTA Hay Riad - Formation Python. Tous droits réservés.</p>
+                <p>Proposé par: M. Slimani (ISTA Hay Riad - Janvier 2025)</p>
+                <p>Developed by ABDERRAHIM ABBAD</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
