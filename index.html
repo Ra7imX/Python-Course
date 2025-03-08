@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="style/style.css">
 
     <link rel="icon" href="images/icons8-python-48.png">
+
+    <script src="https://cdn.counter.dev/script.js" data-id="80f16b82-01db-452a-84a9-6f3fb0edec63" data-utcoffset="0"></script>
     
     <title>Leçon Python | ISTA Hay Riad</title>
 </head>
@@ -27,6 +29,9 @@
                     Proposé par : M.slimani ( ISTA Hay Riad - Janvier 2025 )
                 </p>
             </div>
+            
+            
+            
         </div>
         
         <div class="header-content">
@@ -185,6 +190,10 @@
                     </div>
                 </div>                
             </div>
+            <div class="counter-container">
+                <span class="counter-label">Visiteurs:</span>
+                <span id="visitor-count" class="counter-value">0</span>
+            </div>
         </section>
     </main>
 
@@ -215,5 +224,16 @@
     </footer>
 
     <!-- Footer End -->
+
+    <!-- compteur de visiteurs -->
+
+    <!-- Ajoutez ceci juste avant </body> -->
+    <script>
+        if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){
+        fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"ra7imx",utcoffset:"1"}))
+        };
+        sessionStorage.setItem("_swa","1");
+    </script>
+
 </body>
 </html>
